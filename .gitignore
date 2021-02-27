@@ -2,3 +2,4 @@ token
 token.yaml
 credentials.json
 .env
+tmp/spotify_token.json
