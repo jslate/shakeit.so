@@ -46,7 +46,7 @@ def now_playing
   request["Content-Type"] = "application/json"
   request["Authorization"] = "Bearer #{spotify_access_token}"
   response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(request) }
-  JSON.parse(response.body, object_class: OpenStruct)
+  response.body && JSON.parse(response.body, object_class: OpenStruct)
 end
 
 def format_time(milliseconds)
@@ -57,6 +57,7 @@ def format_time(milliseconds)
 end
 
 def data
+  return { song: nil } if @now_playing.nil?
   {
     song: @now_playing.item.name,
     artist: @now_playing.item.artists.map(&:name).join(", "),
@@ -69,10 +70,6 @@ end
 
 def load_data
   @now_playing = now_playing
-end
-
-get "/" do
-  haml :home
 end
 
 get "/refresh_token" do
@@ -111,7 +108,7 @@ get '/spot_auth_callback' do
   response.body.to_json
 end
 
-get '/player' do
+get '/' do
   load_data
   haml :index, locals: data
 end

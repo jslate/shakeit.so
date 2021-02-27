@@ -6,17 +6,21 @@
   %body
 
     %div.container
-      %div.now-playing
-        %div
-          %img#image{ src: image }
-        %div.song-info
-          %div
-            %h1#song= song
-            %h2#artist= "Artist: #{artist}"
-          %div#note
+      %div.image-container
+        %img{ src: "/march-party.jpg" }
+      - if song
+        %div.now-playing-container
+          %div.now-playing
+            %div
+              %img#image{ src: image }
+            %div.song-info
+              %div
+                %h1#song= song
+                %h2#artist= "Artist: #{artist}"
+              %div#note
 
 
-      %div#progress_container
-        %div#time_remaining= time_remaining
-        %div#progress_bar{ :style => "width: #{progress_width}" }
-          = " "
+          %div#progress_container
+            %div#time_remaining= time_remaining
+            %div#progress_bar{ :style => "width: #{progress_width}" }
+              = " "

@@ -11,6 +11,18 @@ body {
   margin: 10px;
 }
 
+.image-container {
+  margin-bottom: 30px;
+}
+
+.image-container img {
+  width: 600px;
+}
+
+.now-playing-container {
+  width: 600px;
+}
+
 .now-playing {
   display: flex;
   margin-bottom: 10px;
