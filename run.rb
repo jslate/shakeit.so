@@ -69,7 +69,7 @@ get '/spot_auth_callback' do
   })
 
   response = http.request(request)
-  response.to_json
+  response.body.to_json
 
   # request = Net::HTTP::Post.new(uri)
   # request["Accept"] = "application/json"
