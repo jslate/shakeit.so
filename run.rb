@@ -59,6 +59,7 @@ get '/spot_auth_callback' do
   code = params['code']
   uri = URI("https://accounts.spotify.com/api/token")
 
+  http = Net::HTTP.new(uri.host, uri.port)
   request = Net::HTTP::Post.new(uri.request_uri)
   request.set_form_data({
     grant_type: "authorization_code",
@@ -67,15 +68,9 @@ get '/spot_auth_callback' do
     client_id: ENV["SPOTIFY_CLIENT_ID"],
     client_secret: ENV["SPOTIFY_CLIENT_SECRET"],
   })
-
+  
   response = http.request(request)
   response.body.to_json
-
-  # request = Net::HTTP::Post.new(uri)
-  # request["Accept"] = "application/json"
-  # request["Content-Type"] = "application/json"
-  # request["Authorization"] = "Bearer #{ENV['SPOTIFY_TOKEN']}"
-  # response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(request) }
 end
 
 get '/player' do
