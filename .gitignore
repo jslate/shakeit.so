@@ -1,3 +1,4 @@
 token
 token.yaml
 credentials.json
+.env
