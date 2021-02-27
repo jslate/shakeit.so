@@ -6,14 +6,12 @@ require "pry"
 require "haml"
 require "./read_spreadsheet"
 
-TOKEN = File.read("./token").chomp
-
 def now_playing
   uri = URI("https://api.spotify.com/v1/me/player/currently-playing")
   request = Net::HTTP::Get.new(uri)
   request["Accept"] = "application/json"
   request["Content-Type"] = "application/json"
-  request["Authorization"] = "Bearer #{TOKEN}"
+  request["Authorization"] = "Bearer #{File.read("./token").chomp}"
   response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(request) }
   JSON.parse(response.body, object_class: OpenStruct)
 end
