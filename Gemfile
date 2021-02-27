@@ -10,3 +10,4 @@ gem "pry"
 gem "arbre"
 gem "haml"
 gem "google-api-client"
+gem 'dotenv'
