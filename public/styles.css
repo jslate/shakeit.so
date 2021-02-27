@@ -1,0 +1,63 @@
+body {
+  /* background-color: black; */
+  background-color: #003101;
+  /* color: green; */
+  color: #b3b3b3;
+  font-family: Palatino;
+  margin-top: 30px;
+}
+
+.container {
+  margin: 10px;
+}
+
+.now-playing {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-top: 10px;
+}
+
+#note {
+  text-align: right;
+  margin-right: 15px;
+  font-size: 1.5em;
+}
+
+.song-info {
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#progress_container {
+  /* margin: 10px 10px; */
+  position: relative;
+  /* right: 5px;
+  top: 2px; */
+  background-color: #222;
+  /* border: 1px solid blue; */
+}
+
+#progress_bar {
+  height: 3em;
+  text-align: right;
+  background-color: #AAA;
+  /* border: 1px solid green; */
+}
+
+#time_remaining {
+  position: absolute;
+  right: 7px;
+  top: 5px
+}
