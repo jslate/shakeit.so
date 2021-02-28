@@ -2,6 +2,40 @@ function random_item(items) {
   return items[Math.floor(Math.random()*items.length)];
 }
 
+const getLocalTime = (date) => {
+  const currentTimeZoneOffset = date.getTimezoneOffset() * 60_000;
+  return new Date(date - currentTimeZoneOffset)
+}
+
+const countdown = (date, element) => {
+  const setCountdownValue = () => {
+    const totalSeconds = Math.floor((date.valueOf() - new Date().valueOf()) / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    const totalDays = Math.floor(totalHours / 24)
+    const hours = totalHours % 24;
+    const minutes = totalMinutes % 60;
+    const seconds = totalSeconds % 60;
+
+    console.log("totalMinutes", totalMinutes);
+
+    if (totalMinutes < 30) {
+      element.style = ("display: none;");
+      document.getElementById("zoom-link").style = "display: block;"
+    } else {
+      element.innerHTML = `${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+  }
+
+  setCountdownValue(date, element)
+  setInterval(() => setCountdownValue(date, element), 1000)
+}
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  const date = getLocalTime(new Date('2021-03-06T19:00:00.000000'));
+  countdown(date, document.getElementById("countdown"));
+});
+
 setInterval(() => {
   const artist = document.getElementById("artist");
   const song = document.getElementById("song");
