@@ -1,26 +1,66 @@
 body {
-  /* background-color: black; */
-  background-color: #003101;
-  /* color: green; */
-  color: #b3b3b3;
+  background-color: #351b34;
+  /* background-color: #003101; */
+  /* color: #b3b3b3; */
   font-family: Palatino;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 
 .container {
-  margin: 10px;
+  margin: 0 50px;
+  padding: 20px 10px;
+  background-color: white;
+  height: 100%;
+}
+
+.header {
+	width: calc(100% - 10px);
+	background-color: #151144;
+	color: white;
+	font-size: 3em;
+	padding: 15px;
+	margin: -20px 0px 15px -10px;
+}
+
+.big {
+	margin: 20px 0;
+	font-size: 1.5em;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+
+h3 {
+  font-size: 1.2em;
+  margin: 1em 0;
+}
+
+li {
+  list-style: disc;
+  margin-left: 1em;
 }
 
 .image-container {
-  margin-bottom: 30px;
+  margin: 30px 0;
 }
 
 .image-container img {
-  width: 600px;
+  width: 300px;
 }
 
 .now-playing-container {
-  width: 600px;
+  width: 400px;
+  background-color: black;
+  color: c8c8c8;
+  padding: 10px;
+  border-radius: 5px;
+  float: right;
 }
 
 .now-playing {
@@ -28,20 +68,20 @@ body {
   margin-bottom: 10px;
 }
 
-h1 {
-  font-size: 2em;
+.now-playing-container  h1 {
+  font-size: 1.5em;
   margin: 0;
 }
 
-h2 {
-  font-size: 1.5em;
+.now-playing-container h2 {
+  font-size: 1.2em;
   margin-top: 10px;
 }
 
 #note {
   text-align: right;
   margin-right: 15px;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 .song-info {
@@ -72,4 +112,40 @@ h2 {
   position: absolute;
   right: 7px;
   top: 5px
+}
+
+#image {
+  width: 200px;
+}
+
+@media screen and (max-width: 700px) {
+  .now-playing-container {
+    width: calc(100% - 20px);
+    float: none;
+    margin-bottom: 20px;
+  }
+  #image {
+    width: 150px;
+  }
+
+  .image-container img {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .container {
+    margin: 0;
+  }
+  .now-playing-container {
+    width: calc(100% - 20px);
+    float: none;
+    margin-bottom: 20px;
+  }
+  #image {
+    width: 150px;
+  }
+
+  .image-container img {
+    width: 300px;
+  }
 }

@@ -1,13 +1,15 @@
 %html
   %head
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     %script{ src: "/scripts.js"}
     %link{:rel => :stylesheet, :type => :"text/css", :href => "/reset.css"}
     %link{:rel => :stylesheet, :type => :"text/css", :href => "/styles.css"}
   %body
 
     %div.container
-      %div.image-container
-        %img{ src: "/march-party.jpg" }
+
+      %div.header Shake It So!
+
       - if song
         %div.now-playing-container
           %div.now-playing
@@ -18,9 +20,54 @@
                 %h1#song= song
                 %h2#artist= "Artist: #{artist}"
               %div#note
-
-
           %div#progress_container
             %div#time_remaining= time_remaining
             %div#progress_bar{ :style => "width: #{progress_width}" }
               = " "
+
+      %h1 Saturday, March 6, 2021
+
+      %h2
+        2PM EST (19:00 UTC)
+        %br & 8PM EST (01:00 UTC March 7)
+
+      %p.big
+        Join us on
+        %a{ href: "https://zoom.us/j/92598419908?pwd=R1d2NWRnRkgvWURYcHFVRXBJMjF0Zz09#success" }
+          Zoom!
+
+      %ul
+        %li Two, one hour sessions
+        %li An eclectic blend of funk, soul, & rock from the '60s to the present
+        %li
+          Suggested
+          %a{ href: "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=8BX59NH8TN9BG&source=danceparty"}
+            = "donation"
+          of any amount to support several patient advocacy nonprofits
+
+      %h3 Organizations include:
+
+
+      %ul
+        %li
+          %a{ href: "https://www.ataxia-aware.com/"}
+            Ataxia and Me
+        %li
+          %a{ href: "https://lightcollective.org/"}
+            The Light Collective
+        %li
+          %a{ href: "https://www.peoplewithempathy.org/"}
+            People With Empathy
+        %li
+          %a{ href: "https://fibroflutters.com/"}
+            FibroFlutters Patient Advocacy Organisation
+
+
+
+
+      %div.image-container
+        %img{ src: "/march-party.jpg" }
+
+
+
+      %div.extra
