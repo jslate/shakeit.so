@@ -1,3 +1,8 @@
+/* html {
+    min-height: 100% !important;
+    height: 100%;
+} */
+
 body {
   background-color: #351b34;
   /* background-color: #003101; */
@@ -5,6 +10,8 @@ body {
   font-family: sans-serif;
   /* margin-top: 30px; */
   line-height: 1.4rem;
+  min-height: 100% !important;
+  /* height: 100%; */
 }
 
 strong {
@@ -15,7 +22,9 @@ strong {
   margin: 0 50px;
   padding: 20px 10px;
   background-color: white;
-  /* height: 100%; */
+  min-height: 100vh;
+  /* height: 100%;
+  min-height: 100% !important; */
 }
 
 .header {
@@ -30,6 +39,7 @@ strong {
   padding: 30px 15px 20px;
   text-transform: uppercase;
   width: calc(100% - 10px);
+  line-height: 1em;
 }
 
 .grid {
@@ -163,6 +173,10 @@ li {
   width: 200px;
 }
 
+.video {
+  min-height: 500px;
+}
+
 @media screen and (max-width: 840px) {
   .grid {
     grid-template-columns: 100%;
@@ -189,6 +203,15 @@ li {
   .container {
     margin: 0;
   }
+
+  .header {
+    letter-spacing: 0;
+  }
+
+  .video {
+    min-height: 400px;
+  }
+
   iframe {
     width: 300px;
     height: 169px;
