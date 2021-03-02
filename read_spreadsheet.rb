@@ -1,3 +1,4 @@
+require 'dotenv/load'
 require "google/apis/sheets_v4"
 require "googleauth"
 require "googleauth/stores/file_token_store"
@@ -10,7 +11,7 @@ class SpreadsheetReader
   # The file token.yaml stores the user's access and refresh tokens, and is
   # created automatically when the authorization flow completes for the first
   # time.
-  TOKEN_PATH = "token.yaml".freeze
+  TOKEN_PATH = "tmp/token.yaml".freeze
   SCOPE = Google::Apis::SheetsV4::AUTH_SPREADSHEETS_READONLY
 
   ##
@@ -20,7 +21,7 @@ class SpreadsheetReader
   #
   # @return [Google::Auth::UserRefreshCredentials] OAuth2 credentials
   def authorize
-    client_id = Google::Auth::ClientId.from_file CREDENTIALS_PATH
+    client_id = Google::Auth::ClientId.from_hash JSON.parse(ENV["GOOGLE_CREDENTIALS"])
     token_store = Google::Auth::Stores::FileTokenStore.new file: TOKEN_PATH
     authorizer = Google::Auth::UserAuthorizer.new client_id, SCOPE, token_store
     user_id = "default"
@@ -53,3 +54,5 @@ class SpreadsheetReader
     response.values.select { | row| row[0] =~ /\w+/ && row[1] == "TRUE" }.map(&:first)
   end
 end
+
+# puts SpreadsheetReader.new.get_notes
