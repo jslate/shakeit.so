@@ -38,7 +38,7 @@ class SpreadsheetReader
     credentials
   end
 
-  def get_notes
+  def get_notes(song)
     service = Google::Apis::SheetsV4::SheetsService.new
     service.client_options.application_name = APPLICATION_NAME
     service.authorization = authorize
@@ -47,10 +47,13 @@ class SpreadsheetReader
     # https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
     # spreadsheet_id = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
     spreadsheet_id = "1FDQWEK7ZRYt4egJVKE8CHZKnopi8S6UCCbzxbf9OciQ"
-    range = "notes!A1:B40"
+    range = "notes!A1:C40"
     response = service.get_spreadsheet_values spreadsheet_id, range
     # puts response
     puts "No data found." if response.values.empty?
+    song_match = response.values.detect { |row| row[2] && song&.downcase&.match?(row[2]&.downcase) }
+    # binding.pry
+    return [song_match[0]] unless song_match.nil?
     response.values.select { | row| row[0] =~ /\w+/ && row[1] == "TRUE" }.map(&:first)
   end
 end

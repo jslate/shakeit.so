@@ -23,7 +23,7 @@ const countdown = (date, element) => {
       element.style = ("display: none;");
       document.getElementById("zoom-link").style = "display: block;"
     } else {
-      element.innerHTML = `${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
+      element.innerHTML = `Zoom link to appear in: ${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
     }
   }
 
@@ -32,7 +32,7 @@ const countdown = (date, element) => {
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
-  const date = getLocalTime(new Date('2021-03-06T19:00:00.000000'));
+  const date = getLocalTime(new Date('2021-03-06T18:30:00.000000'));
   countdown(date, document.getElementById("countdown"));
 });
 

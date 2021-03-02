@@ -65,7 +65,7 @@ def data
     progress_width: "#{(@now_playing.progress_ms.to_f/@now_playing.item.duration_ms.to_f*100).floor}%",
     image: @now_playing.item.album.images[1].url,
     # notes: ["Nice moves!", "Looking good"],
-    notes: SpreadsheetReader.new.get_notes,
+    notes: SpreadsheetReader.new.get_notes(@now_playing.item.name),
   }
 end
 
