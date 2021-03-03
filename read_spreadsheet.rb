@@ -51,10 +51,9 @@ class SpreadsheetReader
     response = service.get_spreadsheet_values spreadsheet_id, range
     # puts response
     puts "No data found." if response.values.empty?
-    song_match = response.values.detect { |row| row[2] && song&.downcase&.match?(row[2]&.downcase) }
-    # binding.pry
-    return [song_match[0]] unless song_match.nil?
-    response.values.select { | row| row[0] =~ /\w+/ && row[1] == "TRUE" }.map(&:first)
+    response.values.select do |row|
+      row[0] && row[1] == "TRUE" && (!row[2] || song&.downcase&.match?(row[2]&.downcase))
+    end.map(&:first)
   end
 end
 
