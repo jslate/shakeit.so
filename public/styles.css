@@ -58,8 +58,8 @@ strong {
 }
 
 .big {
-	margin: 20px 0;
-	font-size: 1.5em;
+  margin: 20px 0;
+  font-size: 1.5em;
 }
 
 h1 {
@@ -72,8 +72,16 @@ h1 {
   border: 3px solid red;
   display: inline-block;
   padding: 5px 5px 2px;
-  margin-bottom: 20px;
-  margin-top: 5px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.donation {
+  margin: 10px 0 40px 0;
+}
+
+.intro {
+  margin-top: 40px;
 }
 
 h2 {
@@ -216,4 +224,31 @@ li {
     width: 300px;
     height: 169px;
   }
+}
+
+.donate-button {
+  display: block;
+  margin: 10px 0;
+  box-shadow: 0px 10px 14px -7px #3e7327;
+  background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+  background-color:#77b55a;
+  border-radius:11px;
+  border:1px solid #4b8f29;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:28px;
+  font-weight:bold;
+  padding:16px 59px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #5b8a3c;
+}
+.donate-button:hover {
+  background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+  background-color:#72b352;
+}
+.donate-button:active {
+  position:relative;
+  top:1px;
 }

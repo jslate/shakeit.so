@@ -3,3 +3,4 @@ token.yaml
 credentials.json
 .env
 tmp/spotify_token.json
+write_token.rb

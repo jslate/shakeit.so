@@ -11,70 +11,7 @@
       %div.header Shake It So!
 
       %div.grid
-
-        %div.box
-          %h1 Shake It, What?
-          %p
-            %strong
-              Shake It So
-            is a group of people who like to dance, on Zoom, for fun! Our morning dance parties are free every
-            %strong
-              Tuesday through Friday at 8-8:40AM Eastern Time.
-
-          %h2 International Dance Parties!
-          On the
-          %strong
-            first Saturday
-          of every month, we have two International Dance Parties, at
-          %strong
-            2-3PM and 8-9PM
-          Easten Time. These are MUCH bigger events, and we raise money for various charities with a suggested donation.
-
-        - if song
-          %div.box
-            = haml :player, locals: { song: song, image: image, artist: artist, time_remaining: time_remaining, progress_width: progress_width }
-        - else
-          %div.box
-            %div.image-container
-              %img{ src: "/march-party.jpg" }
-
-        %div.box
-          %h1 2nd International Dance Celebration
-
-
-          %h2{ id: "countdown" }
-
-          %p#zoom-link.big{ style: "display: none;"}
-            Join us on
-            %a{ href: "https://zoom.us/j/92598419908?pwd=R1d2NWRnRkgvWURYcHFVRXBJMjF0Zz09#success" }
-              Zoom!
-
-          %ul
-            %li Saturday, March 6, 2021
-            %li Two, one hour sessions 2PM EST (19:00 UTC) & 8PM EST (01:00 UTC March 7)
-            %li An eclectic blend of funk, soul, & rock from the '60s to the present
-            %li
-              Suggested
-              %a{ href: "https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=8BX59NH8TN9BG&source=danceparty"}
-                = "donation"
-              of any amount to support several patient advocacy nonprofits
-
-          %h3 Funds raised will support these nonprofits:
-
-          %ul
-            %li
-              %a{ href: "https://www.peoplewithempathy.org/"}
-                People With Empathy
-            %li
-              %a{ href: "https://www.ataxia-aware.com/"}
-                Ataxia and Me
-            %li
-              %a{ href: "https://lightcollective.org/"}
-                The Light Collective
-            %li
-              %a{ href: "https://fibroflutters.com/"}
-                FibroFlutters Patient Advocacy Organisation
-
-        %div.box.video
-
-          <iframe width="400" height="225" src="https://www.youtube.com/embed/XODIXz7YSiM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        = haml :party
+        = haml :player, locals: locals
+        = haml :intro
+        = haml :video1
