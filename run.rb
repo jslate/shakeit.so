@@ -64,8 +64,8 @@ def data
     time_remaining: "-#{format_time(@now_playing.item.duration_ms.to_i - @now_playing.progress_ms.to_i)}",
     progress_width: "#{(@now_playing.progress_ms.to_f/@now_playing.item.duration_ms.to_f*100).floor}%",
     image: @now_playing.item.album.images[1].url,
-    # notes: ["Nice moves!", "Looking good"],
-    notes: SpreadsheetReader.new.get_notes(@now_playing.item.name),
+    notes: ["Nice moves!", "Looking good"],
+    #notes: SpreadsheetReader.new.get_notes(@now_playing.item.name),
   }
 end
 
