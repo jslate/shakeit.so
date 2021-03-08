@@ -1,17 +1,8 @@
-/* html {
-    min-height: 100% !important;
-    height: 100%;
-} */
-
 body {
   background-color: #351b34;
-  /* background-color: #003101; */
-  /* color: #b3b3b3; */
   font-family: sans-serif;
-  /* margin-top: 30px; */
   line-height: 1.4rem;
   min-height: 100% !important;
-  /* height: 100%; */
 }
 
 strong {
@@ -23,8 +14,6 @@ strong {
   padding: 20px 10px;
   background-color: white;
   min-height: 100vh;
-  /* height: 100%;
-  min-height: 100% !important; */
 }
 
 .header {
@@ -44,21 +33,32 @@ strong {
 
 .grid {
   display: grid;
-  /* flex-direction: row; */
   grid-template-columns: auto 500px;
   column-gap: 20px;
-  row-gap: 20px;
-  /* grid-template-rows: 25% 100px auto; */
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
 }
 
 .box {
-  /* display: inline-block; */
-  /* border: 1px solid orange; */
-  /* width: 40%; */
+  margin: 35px 0;
+}
+
+.box:first-child {
+  margin: 0 0 35px;
+}
+
+.side .box {
+  margin: 15px 0;
+}
+
+.side .box:first-child {
+  margin: 0 0 15px;
 }
 
 .big {
-  margin: 20px 0;
   font-size: 1.5em;
 }
 
@@ -80,36 +80,25 @@ h1 {
   margin: 10px 0 40px 0;
 }
 
-.intro {
-  margin-top: 40px;
-}
-
 h2 {
   margin-top: 1em;
   font-size: 1.2em;
   font-weight: 700;
-  /* margin-bottom: 1em; */
 }
 
 h2.subhead {
   font-size: 1.2em;
-  margin-bottom: 1em;
-  margin-top: 0;
   font-weight: normal;
 }
 
 h3 {
   font-size: 1.2em;
-  margin: 1em 0;
+  /* margin: 1em 0; */
 }
 
 li {
   list-style: disc;
   margin-left: 1em;
-}
-
-.image-container {
-  margin: 30px 0;
 }
 
 .image-container img {
@@ -122,8 +111,6 @@ li {
   color: c8c8c8;
   padding: 10px;
   border-radius: 5px;
-  margin-bottom: 20px;
-  /* float: right; */
 }
 
 .now-playing {
@@ -138,7 +125,6 @@ li {
 
 .now-playing-container h2 {
   font-size: 1.2em;
-  margin-top: 10px;
 }
 
 #note {
@@ -156,19 +142,14 @@ li {
 }
 
 #progress_container {
-  /* margin: 10px 10px; */
   position: relative;
-  /* right: 5px;
-  top: 2px; */
   background-color: #222;
-  /* border: 1px solid blue; */
 }
 
 #progress_bar {
   height: 3em;
   text-align: right;
   background-color: #AAA;
-  /* border: 1px solid green; */
 }
 
 #time_remaining {
@@ -181,23 +162,15 @@ li {
   width: 180px;
 }
 
-.video {
-  min-height: 500px;
-}
-
 @media screen and (max-width: 840px) {
   .grid {
     grid-template-columns: 100%;
-  }
-  .now-playing-container {
-    margin-top: 20px;
   }
 }
 
 @media screen and (max-width: 700px) {
   .now-playing-container {
     width: calc(100% - 20px);
-    margin-bottom: 20px;
   }
   #image {
     width: 150px;
@@ -251,8 +224,4 @@ li {
 .donate-button:active {
   position:relative;
   top:1px;
-}
-
-ul {
-  margin-bottom: 40px;
 }

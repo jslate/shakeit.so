@@ -36,6 +36,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
   countdown(date, document.getElementById("countdown"));
 });
 
+const width = (data) => {
+  return `${Math.floor(data.progress / data.duration * 100)}%`;
+}
+
 setInterval(() => {
   const artist = document.getElementById("artist");
   const song = document.getElementById("song");
@@ -50,7 +54,7 @@ setInterval(() => {
       artist.innerHTML = data.artist;
       song.innerHTML = data.song;
       time_remaining.innerHTML = data.time_remaining;
-      progress_bar.style = `width: ${data.progress_width}`;
+      progress_bar.style = `width: ${width(data)}`;
       song.innerHTML = data.song;
       image.src = data.image;
       note.innerHTML = random_item(data.notes);
