@@ -18,9 +18,11 @@ end
 def notes
   client = GoogleClient.new("A1", "C100")
 
-  client.notes["values"].select do |row|
+  selected_rows = client.notes["values"].select do |row|
     row[0] && row[1] == "TRUE" && (!row[2] || @now_playing.item.name?(row[2]&.downcase))
-  end.map(&:first)
+  end
+
+  selected_rows.empty? ? [""] : selected_rows.map(&:first)
 end
 
 def data
