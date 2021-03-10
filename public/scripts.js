@@ -17,8 +17,6 @@ const countdown = (date, element) => {
     const minutes = totalMinutes % 60;
     const seconds = totalSeconds % 60;
 
-    console.log("totalMinutes", totalMinutes);
-
     if (totalMinutes < 30) {
       element.style = ("display: none;");
       document.getElementById("zoom-link").style = "display: block;"
@@ -46,17 +44,21 @@ setInterval(() => {
   const image = document.getElementById("image");
   const progress_bar = document.getElementById("progress_bar");
   const time_remaining = document.getElementById("time_remaining");
-  const note = document.getElementById("note");
+  const noteElement = document.getElementById("note");
   fetch('/np')
     .then(response => response.json())
     .then(data => {
-      console.log("update!", data)
       artist.innerHTML = data.artist;
       song.innerHTML = data.song;
       time_remaining.innerHTML = data.time_remaining;
       progress_bar.style = `width: ${width(data)}`;
       song.innerHTML = data.song;
       image.src = data.image;
-      note.innerHTML = random_item(data.notes);
+      let note = random_item(data.notes);
+      if (note.match(/\d{4}/)) {
+        const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 5);
+        note = note.slice(0, position) + "????".slice(position);
+      }
+      noteElement.innerHTML = note;
     });
 }, 5000);
