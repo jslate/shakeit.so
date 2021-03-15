@@ -21,7 +21,7 @@ const countdown = (date, element) => {
       element.style = ("display: none;");
       document.getElementById("zoom-link").style = "display: block;"
     } else {
-      element.innerHTML = `Zoom link to appear in: ${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
+      element.innerHTML = `Zoom link to appear in:<br />${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
     }
   }
 
