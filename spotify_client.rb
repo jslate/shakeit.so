@@ -6,17 +6,30 @@ class SpotifyClient
     client_id: ENV["SPOTIFY_CLIENT_ID"].freeze,
     client_secret: ENV["SPOTIFY_CLIENT_SECRET"].freeze,
   }.freeze
-  ACCESS_TOKEN_TOKEN = URI("https://accounts.spotify.com/api/token").freeze
-  CURRENTLY_PLAYING_TOKEN = URI("https://api.spotify.com/v1/me/player/currently-playing").freeze
+  ACCESS_TOKEN_URI = URI("https://accounts.spotify.com/api/token").freeze
+  CURRENTLY_PLAYING_URI = URI("https://api.spotify.com/v1/me/player/currently-playing").freeze
+  USER_PLAYLISTS_URI = URI("https://api.spotify.com/v1/users/jslate73/playlists").freeze
 
   def now_playing
-    request = Net::HTTP::Get.new(CURRENTLY_PLAYING_TOKEN)
+    request = Net::HTTP::Get.new(CURRENTLY_PLAYING_URI)
     request["Accept"] = "application/json"
     request["Content-Type"] = "application/json"
     request["Authorization"] = "Bearer #{access_token}"
     response = Net::HTTP.start(
-      CURRENTLY_PLAYING_TOKEN.hostname,
-      CURRENTLY_PLAYING_TOKEN.port,
+      CURRENTLY_PLAYING_URI.hostname,
+      CURRENTLY_PLAYING_URI.port,
+      use_ssl: true) { |http| http.request(request) }
+    response.body && JSON.parse(response.body, object_class: OpenStruct)
+  end
+
+  def playlists
+    request = Net::HTTP::Get.new(USER_PLAYLISTS_URI)
+    request["Accept"] = "application/json"
+    request["Content-Type"] = "application/json"
+    request["Authorization"] = "Bearer #{access_token}"
+    response = Net::HTTP.start(
+      CURRENTLY_PLAYING_URI.hostname,
+      CURRENTLY_PLAYING_URI.port,
       use_ssl: true) { |http| http.request(request) }
     response.body && JSON.parse(response.body, object_class: OpenStruct)
   end
@@ -35,10 +48,10 @@ class SpotifyClient
   end
 
   def access_token_from_spotify
-    http = Net::HTTP.new(ACCESS_TOKEN_TOKEN.host, ACCESS_TOKEN_TOKEN.port)
+    http = Net::HTTP.new(ACCESS_TOKEN_URI.host, ACCESS_TOKEN_URI.port)
     http.use_ssl = true
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    request = Net::HTTP::Post.new(ACCESS_TOKEN_TOKEN.request_uri)
+    request = Net::HTTP::Post.new(ACCESS_TOKEN_URI.request_uri)
     request.set_form_data(TOKEN_FORM_DATA)
     response = http.request(request)
     parsed_response = JSON.parse(response.body)

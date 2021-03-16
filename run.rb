@@ -47,6 +47,16 @@ get '/' do
   haml :index, locals: data
 end
 
+get '/about' do
+  # load_data
+  haml :about #, locals: data
+end
+
+get '/playlists' do
+  # load_data
+  haml :playlists #, locals: data
+end
+
 get "/np" do
   load_data
   json(data)

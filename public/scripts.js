@@ -48,17 +48,19 @@ setInterval(() => {
   fetch('/np')
     .then(response => response.json())
     .then(data => {
-      artist.innerHTML = data.artist;
-      song.innerHTML = data.song;
-      time_remaining.innerHTML = data.time_remaining;
-      progress_bar.style = `width: ${width(data)}`;
-      song.innerHTML = data.song;
-      image.src = data.image;
-      let note = random_item(data.notes);
-      if (note.match(/^\d{4}$/)) {
-        const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 5);
-        note = note.slice(0, position) + "????".slice(position);
+      if (!!data.song) {
+        artist.innerHTML = data.artist;
+        song.innerHTML = data.song;
+        time_remaining.innerHTML = data.time_remaining;
+        progress_bar.style = `width: ${width(data)}`;
+        song.innerHTML = data.song;
+        image.src = data.image;
+        let note = random_item(data.notes);
+        if (note.match(/^\d{4}$/)) {
+          const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 5);
+          note = note.slice(0, position) + "????".slice(position);
+        }
+        noteElement.innerHTML = note;
       }
-      noteElement.innerHTML = note;
     });
 }, 5000);
