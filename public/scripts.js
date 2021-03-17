@@ -30,7 +30,7 @@ const countdown = (date, element) => {
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
-  const date = getLocalTime(new Date('2021-04-03T18:30:00.000000'));
+  const date = getLocalTime(new Date('2021-04-10T18:30:00.000000'));
   countdown(date, document.getElementById("countdown"));
 });
 

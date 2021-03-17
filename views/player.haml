@@ -1,19 +1,14 @@
-- if song
-  %div.box
-    %div.now-playing-container
-      %div.now-playing
+%div.box
+  %div.now-playing-container
+    %div.now-playing
+      %div
+        %img#image{ src: image }
+      %div.song-info
         %div
-          %img#image{ src: image }
-        %div.song-info
-          %div
-            %h1#song= song
-            %h2#artist= "Artist: #{artist}"
-          %div#note
-      %div#progress_container
-        %div#time_remaining= time_remaining
-        %div#progress_bar{ :style => "width: #{progress_width}" }
-          = " "
-- else
-  %div.box
-    %div.image-container
-      %img{ src: "/march-party.jpg" }
+          %h1#song= song
+          %h2#artist= "Artist: #{artist}"
+        %div#note
+    %div#progress_container
+      %div#time_remaining= time_remaining
+      %div#progress_bar{ :style => "width: #{progress_width}" }
+        = " "

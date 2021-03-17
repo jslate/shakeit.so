@@ -45,6 +45,9 @@
   margin: 0 0.5em;
   /* flex: 1; */
 }
+p {
+  margin-bottom: 1em;
+}
 
 .header-body {
   flex: 1;
