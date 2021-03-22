@@ -1,4 +1,5 @@
 require 'dotenv/load'
+require "active_support/all"
 require "net/http"
 require "json"
 require "sinatra"
@@ -7,6 +8,7 @@ require "pry"
 require "haml"
 require "./google_client"
 require "./spotify_client"
+require "./note"
 
 def format_time(milliseconds)
   total_seconds = milliseconds / 1000
@@ -17,34 +19,32 @@ end
 
 def notes
   client = GoogleClient.new("A1", "C100")
-  selected_rows = client.notes["values"].select do |row|
-    row[0] && row[1] == "TRUE" && (!row[2] || @now_playing.item.name.downcase.include?(row[2]&.downcase))
+  client.data["values"].map { |values| Note.new(values) }.select do |note|
+    note.enabled? && note.show_for_song?(@now_playing)
   end
-
-  selected_rows.empty? ? [""] : selected_rows.map(&:first).map(&:to_s)
 end
 
 def format_data
-  if !@now_playing.nil?
+  if @now_playing.present?
     {
-      song: @now_playing.item.name,
-      artist: @now_playing.item.artists.map(&:name).join(", "),
-      time_remaining: "-#{format_time(@now_playing.item.duration_ms.to_i - @now_playing.progress_ms.to_i)}",
-      duration: @now_playing.item.duration_ms.to_i,
-      progress: @now_playing.progress_ms.to_i,
-      progress_width: "#{(@now_playing.progress_ms.to_f/@now_playing.item.duration_ms.to_f*100).floor}%",
-      image: @now_playing.item.album.images[1].url,
-      notes: notes,
+      title: @now_playing.title,
+      artist: @now_playing.artist,
+      duration: @now_playing.duration,
+      progress: @now_playing.progress,
+      image: @now_playing.image,
+      time_remaining: format_time(@now_playing.time_remaining),
+      progress_percentage: @now_playing.progress_percentage,
+      notes: notes.map(&:text),
     }
   end
 end
 
 def fake_data
   {
-    song: "Twice As Hard",
+    title: "Twice As Hard",
     artist: "The Black Crowes",
     time_remaining: "-3:54",
-    progress_width: "6%",
+    progress_percentage: "6",
     image: "/images/twice-as-hard.jpg",
     notes: ["Keep on rockin'!"],
   }

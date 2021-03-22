@@ -1,5 +1,10 @@
-function random_item(items) {
-  return items[Math.floor(Math.random()*items.length)];
+const formatTime = (milliseconds) => {
+  const totalSeconds = milliseconds / 1000;
+  const minutes = Math.floor(totalSeconds / 60);
+  let seconds = Math.floor(totalSeconds % 60);
+  if (seconds < 10) { seconds = `0${seconds}`; }
+
+  return `${minutes}:${seconds}`;
 }
 
 const getLocalTime = (date) => {
@@ -29,38 +34,63 @@ const countdown = (date, element) => {
   setInterval(() => setCountdownValue(date, element), 1000)
 }
 
-window.addEventListener('DOMContentLoaded', (event) => {
-  const date = getLocalTime(new Date('2021-04-10T18:30:00.000000'));
-  countdown(date, document.getElementById("countdown"));
-});
-
-const width = (data) => {
-  return `${Math.floor(data.progress / data.duration * 100)}%`;
+const width = (progress, duration) => {
+  return `${Math.floor(progress / duration * 100)}%`;
 }
 
-setInterval(() => {
+const player = () => {
   const artist = document.getElementById("artist");
   const song = document.getElementById("song");
   const image = document.getElementById("image");
   const progress_bar = document.getElementById("progress_bar");
   const time_remaining = document.getElementById("time_remaining");
   const noteElement = document.getElementById("note");
-  fetch('/np')
-    .then(response => response.json())
-    .then(data => {
-      if (!!data.song) {
-        artist.innerHTML = data.artist;
-        song.innerHTML = data.song;
-        time_remaining.innerHTML = data.time_remaining;
-        progress_bar.style = `width: ${width(data)}`;
-        song.innerHTML = data.song;
-        image.src = data.image;
-        let note = random_item(data.notes);
-        if (note.match(/^\d{4}$/)) {
-          const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 5);
-          note = note.slice(0, position) + "????".slice(position);
+
+  let iteration = 0;
+  setInterval(() => {
+    iteration += 1;
+    if (iteration % 5 === 0) {
+      fetch('/np')
+        .then(response => response.json())
+        .then(data => {
+          if (!!data.title) {
+            artist.innerHTML = data.artist;
+            song.innerHTML = data.song;
+            time_remaining.innerHTML = data.time_remaining;
+            progress_bar.style = `width: ${width(data.progress, data.duration)}`;
+            progress_bar.dataset.progress = data.progress;
+            progress_bar.dataset.duration = data.duration;
+            song.innerHTML = data.title;
+            image.src = data.image;
+            let note = data.notes[iteration % data.notes.length];
+            if (note) {
+              if (note.match(/^\d{4}$/)) {
+                const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 5);
+                noteElement.innerHTML = note.slice(0, position) + "????".slice(position);
+              } else {
+                noteElement.innerHTML = note;
+              }
+            }
+          }
+        });
+      } else {
+        const data = progress_bar.dataset;
+        if (data.duration && data.progress) {
+          const duration = parseInt(data.duration);
+          const newProgress = parseInt(data.progress) + 1000;
+          if (newProgress !== duration) {
+            progress_bar.style = `width: ${width(newProgress, duration)}`;
+            progress_bar.dataset.progress = newProgress;
+            time_remaining.innerHTML = formatTime(duration - newProgress);
+          }
         }
-        noteElement.innerHTML = note;
+
       }
-    });
-}, 5000);
+  }, 1000);
+}
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  const date = getLocalTime(new Date('2021-04-10T18:30:00.000000'));
+  countdown(date, document.getElementById("countdown"));
+  player();
+});

@@ -1,3 +1,5 @@
+require "./song"
+
 class SpotifyClient
   JSON_PATH = "./tmp/spotify_token.json".freeze
   TOKEN_FORM_DATA = {
@@ -19,7 +21,17 @@ class SpotifyClient
       CURRENTLY_PLAYING_URI.hostname,
       CURRENTLY_PLAYING_URI.port,
       use_ssl: true) { |http| http.request(request) }
-    response.body && JSON.parse(response.body, object_class: OpenStruct)
+
+    return if response.body.nil?
+
+    song_data = JSON.parse(response.body, object_class: OpenStruct)
+    Song.new(
+      title: song_data.item.name,
+      artist: song_data.item.artists.map(&:name).join(", "),
+      duration: song_data.item.duration_ms.to_i,
+      progress: song_data.progress_ms.to_i,
+      image: song_data.item.album.images[1].url,
+    )
   end
 
   def playlists

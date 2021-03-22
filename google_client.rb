@@ -12,7 +12,7 @@ class GoogleClient
     @range_end = range_end
   end
 
-  def notes
+  def data
     request = Net::HTTP::Get.new(
       "#{GOOGLE_SHEETS_HOST.request_uri}/v4/spreadsheets/#{SHEET_ID}/values/#{range}?key=#{API_KEY}"
     )
