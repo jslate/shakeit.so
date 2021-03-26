@@ -13,6 +13,11 @@
   --player-tx: #FFF;
   --progress-bg: #4c4694;
   --progress-container-bg: #A6A6A6;
+
+  --player-bg: #193;
+  --player-tx: balck;
+  --progress-bg: #824832;
+  --progress-container-bg: #bbb;
 }
 
 .header {
