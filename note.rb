@@ -2,10 +2,10 @@ require "active_support/all"
 
 class Note
   attr_reader :text, :enabled
-  
+
   def initialize(row)
     @text, enabled_str, @song_matcher = row
-    @enabled = enabled_str.upcase == "TRUE"
+    @enabled = text.present? && enabled_str.upcase == "TRUE"
   end
 
   def show_for_song?(song)
@@ -13,6 +13,6 @@ class Note
   end
 
   def enabled?
-    @enabled
+    enabled
   end
 end
