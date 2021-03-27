@@ -65,6 +65,10 @@ get '/about' do
   haml :about
 end
 
+get '/international' do
+  haml :international
+end
+
 get '/playlists' do
   haml :playlists
 end
