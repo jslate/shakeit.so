@@ -80,6 +80,10 @@ ul {
   margin-bottom: 1em;
 }
 
+em {
+  font-style: italic;
+}
+
 body {
   background-color: var(--body-bg);
   font-family: sans-serif;
