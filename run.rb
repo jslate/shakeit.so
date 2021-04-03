@@ -55,10 +55,7 @@ def load_data
 end
 
 get '/' do
-  load_data
-  data = @now_playing.nil? ? fake_data : format_data
-
-  haml :index, locals: data
+  haml :index
 end
 
 get '/about' do
@@ -70,7 +67,24 @@ get '/international' do
 end
 
 get '/playlists' do
-  haml :playlists
+  load_data
+  data = @now_playing.nil? ? fake_data : format_data
+
+  ids = %w(
+    1rvkADg0jDMKqqBfKBU0kg
+    7nDWpI1cXfwpfExpw9YiEE
+    0JWEWw29vix9VbKocExYKJ
+    6EHev7ILWpnonREk2A4qlQ
+    7MMb9BzGTprM0llU0j6yV6
+    0ZujLOxJxQzNYRM5nCkkzS
+    1YzDStyaFX6slaxMXJ5YXc
+    3N22XQ8Y4B6DeUvOWDERwI
+    4a80NU4ysAEjPLyeQfWuQH
+    7IA91lSLLVgf5Yf0oIOBZm
+    2H0jnKkKRyOSBG5Gq06I5E
+  )
+
+  haml :playlists, locals: data.merge(ids: ids)
 end
 
 get "/np" do

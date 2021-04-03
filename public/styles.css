@@ -119,6 +119,12 @@ strong {
   margin: 0 0 50px 0;
 }
 
+.box.content {
+  background-color: #eae3ff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 .side .box {
   margin: 15px 0;
 }
