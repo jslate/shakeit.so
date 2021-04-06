@@ -12,7 +12,10 @@ const getLocalTime = (date) => {
   return new Date(date - currentTimeZoneOffset)
 }
 
-const countdown = (date, element) => {
+const countdown = (date) => {
+  const counter = document.getElementById("counter")
+  const zoomLink = document.getElementById("zoom-link");
+  if (!zoomLink) { return; }
   const setCountdownValue = () => {
     const totalSeconds = Math.floor((date.valueOf() - new Date().valueOf()) / 1000);
     const totalMinutes = Math.floor(totalSeconds / 60);
@@ -22,16 +25,18 @@ const countdown = (date, element) => {
     const minutes = totalMinutes % 60;
     const seconds = totalSeconds % 60;
 
-    if (totalMinutes < 30) {
-      element.style = ("display: none;");
-      document.getElementById("zoom-link").style = "display: block;"
+    if (totalMinutes < 0) {
+      counter.style = "display: none;";
+      zoomLink.style = "display: block;"
     } else {
-      element.innerHTML = `Zoom link to appear in:<br />${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
+      counter.style = "display: block;";
+      zoomLink.style = "display: none;"
+      counter.innerHTML = `Zoom link to appear in:<br />${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
     }
   }
 
-  setCountdownValue(date, element)
-  setInterval(() => setCountdownValue(date, element), 1000)
+  setCountdownValue(date, counter)
+  setInterval(() => setCountdownValue(date, counter), 1000)
 }
 
 const width = (progress, duration) => {
@@ -40,6 +45,7 @@ const width = (progress, duration) => {
 
 const player = () => {
   const artist = document.getElementById("artist");
+  if (!artist) { return; }
   const song = document.getElementById("song");
   const image = document.getElementById("image");
   const progress_bar = document.getElementById("progress_bar");
@@ -53,7 +59,7 @@ const player = () => {
       fetch('/np')
         .then(response => response.json())
         .then(data => {
-          if (!!data.title) {
+          if (!!data && !!data.title) {
             artist.innerHTML = data.artist;
             song.innerHTML = data.song;
             time_remaining.innerHTML = data.time_remaining;
@@ -90,7 +96,7 @@ const player = () => {
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
-  const date = getLocalTime(new Date('2021-04-10T18:30:00.000000'));
-  countdown(date, document.getElementById("countdown"));
+  const date = getLocalTime(new Date('2021-04-10T17:30:00.000000'));
+  countdown(date);
   player();
 });
