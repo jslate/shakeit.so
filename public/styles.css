@@ -6,6 +6,10 @@
   --donate-hover-bg: #00CFC0;
   --donate-tx: #000;
   --donate-sh: #00CFC0;
+  --request-bg: #8A48D9;
+  --request-hover-bg: #8A48D9;
+  --request-tx: #000;
+  --request-sh: #00CFC0;
   --header-bg: #4c4694;
   --header-bd: #000;
   --header-tx: #ffffbe;
@@ -273,10 +277,10 @@ li {
   justify-content: space-between;
 }
 
-.countdown, .donate-button {
+.countdown, .donate-button, .request-button {
   display: flex;
   align-items: center;
-  width: 30%;
+  width: 20%;
   justify-content: center;
   line-height: 1.2;
 }
@@ -288,7 +292,7 @@ li {
   background-color: var(--countdown-bg);
   /* display: block; */
   /* padding: 8px; */
-  padding: 16px 59px;
+  padding: 16px 20px;
   margin: 30px 0;
   /* width: 100%; */
   border-radius: 4px;
@@ -309,9 +313,9 @@ li {
   font-family:Arial;
   font-size:1.5em;
   font-weight:bold;
-  padding:16px 59px;
+  padding:16px 20px;
   text-decoration:none;
-  padding: 16px 59px;
+  padding: 16px 20px;
   margin: 30px 0;
   /* text-shadow:0px 1px 0px var(--donate-sh); */
 }
@@ -320,6 +324,34 @@ li {
   background-color: var(--donate-hover-bg);
 }
 .donate-button:active {
+  position:relative;
+  top:1px;
+}
+.request-button {
+  /* display: block; */
+  margin: 10px 0;
+  /* box-shadow: 0px 10px 14px -7px var(--request-bg); */
+  /* background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%); */
+  background-color: var(--request-bg);
+  border-radius:4px;
+  border:1px solid var(--request-bd);
+  /* display:inline-block; */
+  cursor:pointer;
+  color: var(--request-tx);
+  font-family:Arial;
+  font-size:1.5em;
+  font-weight:bold;
+  padding:16px 20px;
+  text-decoration:none;
+  padding: 16px 20px;
+  margin: 30px 0;
+  /* text-shadow:0px 1px 0px var(--request-sh); */
+}
+.request-button:hover {
+  /* background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%); */
+  background-color: var(--request-hover-bg);
+}
+.request-button:active {
   position:relative;
   top:1px;
 }
@@ -344,7 +376,7 @@ li {
     display: block;
     position: relative;
   }
-  .countdown, .donate-button {
+  .countdown, .donate-button, .request-button {
     width: 63%;
     display: flex;
     justify-content: center;
