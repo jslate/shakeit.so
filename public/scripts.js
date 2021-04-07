@@ -68,14 +68,15 @@ const player = () => {
             progress_bar.dataset.duration = data.duration;
             song.innerHTML = data.title;
             image.src = data.image;
-            let note = data.notes[iteration % data.notes.length];
-            if (note) {
-              if (note.match(/^\d{4}$/)) {
-                const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 5);
-                noteElement.innerHTML = note.slice(0, position) + "????".slice(position);
-              } else {
-                noteElement.innerHTML = note;
-              }
+            let note = data.notes[iteration / 5 % data.notes.length];
+
+            if (note && note.match(/^\d{4}$/)) {
+              const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 5);
+              noteElement.innerHTML = note.slice(0, position) + "????".slice(position);
+            } else if (!!note) {
+              noteElement.innerHTML = note;
+            } else {
+              noteElement.innerHTML = "";
             }
           }
         });
@@ -84,7 +85,7 @@ const player = () => {
         if (data.duration && data.progress) {
           const duration = parseInt(data.duration);
           const newProgress = parseInt(data.progress) + 1000;
-          if (newProgress !== duration) {
+          if (newProgress <= duration) {
             progress_bar.style = `width: ${width(newProgress, duration)}`;
             progress_bar.dataset.progress = newProgress;
             time_remaining.innerHTML = formatTime(duration - newProgress);
