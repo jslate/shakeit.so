@@ -71,6 +71,8 @@ get '/playlists' do
   data = @now_playing.nil? ? fake_data : format_data
 
   ids = %w(
+    4Ccr10f8JepapNHDDTg5PC
+    1vben8XI8XjYYRYYq4btzs
     1rvkADg0jDMKqqBfKBU0kg
     7nDWpI1cXfwpfExpw9YiEE
     0JWEWw29vix9VbKocExYKJ
