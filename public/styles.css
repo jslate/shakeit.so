@@ -1,12 +1,12 @@
 :root {
   --body-bg: #351b34;
   --container-bg: #FFF;
-  --countdown-bg: #FF0065;
+  --countdown-bg: #FDCE10;
   --donate-bg: #00CFC0;
   --donate-hover-bg: #00CFC0;
   --donate-tx: #000;
   --donate-sh: #00CFC0;
-  --request-bg: #8A48D9;
+  --request-bg: #A09AB5;
   --request-hover-bg: #8A48D9;
   --request-tx: #000;
   --request-sh: #00CFC0;
@@ -120,7 +120,7 @@ strong {
 }
 
 .box {
-  margin: 0 0 50px 0;
+  margin: 0 0 1em 0;
 }
 
 .box.content {
@@ -154,7 +154,7 @@ h1 {
 }
 
 h2 {
-  margin-top: 1em;
+  margin: 1em 0;
   font-size: 1.2em;
   font-weight: 700;
 }
@@ -239,13 +239,13 @@ li {
   display: none;
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 1200px) {
   .grid {
     grid-template-columns: 100%;
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
   .now-playing-container {
     width: calc(100% - 20px);
   }
@@ -272,17 +272,18 @@ li {
 
 
 .buttons {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1em;
 }
 
 .countdown, .donate-button, .request-button {
+  line-height: 1.2;
+  text-align: center;
   display: flex;
   align-items: center;
-  width: 20%;
   justify-content: center;
-  line-height: 1.2;
+  padding: 1em 0;
 }
 
 .countdown {
@@ -292,7 +293,7 @@ li {
   background-color: var(--countdown-bg);
   /* display: block; */
   /* padding: 8px; */
-  padding: 16px 20px;
+  /* padding: 16px 20px; */
   margin: 30px 0;
   /* width: 100%; */
   border-radius: 4px;
@@ -347,23 +348,11 @@ li {
   margin: 30px 0;
   /* text-shadow:0px 1px 0px var(--request-sh); */
 }
-.request-button:hover {
-  /* background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%); */
-  background-color: var(--request-hover-bg);
-}
-.request-button:active {
-  position:relative;
-  top:1px;
-}
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 700px) {
   .container {
     margin: 0;
   }
-
-  /* .video {
-    min-height: 400px;
-  } */
 
   iframe {
     width: 300px;
@@ -377,10 +366,11 @@ li {
     position: relative;
   }
   .countdown, .donate-button, .request-button {
-    width: 63%;
+    width: 100%;
     display: flex;
     justify-content: center;
     height: 3em;
+    padding: 0.5em 0;
   }
 
 
