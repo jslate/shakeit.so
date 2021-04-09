@@ -58,6 +58,10 @@ get '/' do
   haml :index
 end
 
+get '/index2' do
+  haml :index2
+end
+
 get '/about' do
   haml :about
 end
