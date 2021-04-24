@@ -2,19 +2,27 @@
   %head
     <meta name="viewport" content="width=device-width, initial-scale=1">
     %script{ src: "/scripts.js"}
-    %link{:rel => :stylesheet, :type => :"text/css", :href => "/reset.css"}
-    %link{:rel => :stylesheet, :type => :"text/css", :href => "/styles.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/reset.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/styles.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/generated-styles.css"}
+    %meta{ property: "og:url", content: "https://www.shakeit.so" }
+    %meta{ property: "og:type", content: "website" }
+    %meta{ property: "og:title", content: "Shake It So!" }
+    %meta{ property: "og:description", content: "Shake It So is all about dancing, on Zoom, for fun and for good!" }
+    %meta{ property: "og:image", content: "https://www.shakeit.so/images/shake-it-so-logo-meta.png" }
   %body
-    %div.container
-      = haml :header
+    %div.grid
 
-      %div.grid
-        %div.flex_column
-          %h1 What are our International Dance Celebrations?
+      %div.page-margin
+      %div.container
+        .mg-vt-sm-1.pd-hz-sm-1
+          %img#dancers-header{ src: "/images/dancer-header.svg"  }
+
+          %h1.mg-vt-sm-1 What are our International Dance Celebrations?
 
           %p They are a chance to listen to some fantastic music, move as much or as little as you like, and raise some awareness and money for some great organizations both in and out of the United States. So come join us and sing, dance and smile your Saturday night (or whatever time of day it is for you) away!
 
-          %ul
+          %ul.mg-vt-sm-1
             %li
               Each International Dance Celebrations is a single day, multi-session events. Usually they are on the first Saturday of every month, with two one-hour sessions, one at 2 PM and one at 8 PM Eastern time.
               %em The April event will be on Saturday, April 10, not April 3.
@@ -26,12 +34,17 @@
             %a{ href: "/" } home page
             at the appropriate time, and click on the link to join the party!
 
-          %h2 What are the sessions like?
+          %h2.mg-vt-sm-1 What are the sessions like?
           %p Everyone is muted so we can hear the music, but people should feel comfortable participating in whatever way they like. Cameras can be on or off, and dancing is encouraged but not required. And dancing can mean just about anything, from tapping a toe to jumping all around. Many people have a great time listening to the music and participating in the quite lively chat.
 
-          %h2 How do you support organizations?
+          %h2.mg-vt-sm-1 How do you support organizations?
           %p We ask for a donation of any amount to one of the organizations we are supporting. We don’t handle the money, donations go directly to the organizations. Or we set up fundraisers through GoFundMe, which supports many nonprofits and lets us keep track of our progress.
 
           %p Ideally, we like to work with organizations with staff who are interested in joining the parties! These people work hard, often with few opportunities unwind, cut loose, and celebrate. Providing such an opportunity is also, in addition to fundraising, an important part of how we can support organizations that are doing such important work.
 
-        %div.flex_column.side
+          %h2.mg-tp-sm-3.mg-bt-sm-1 Past Events
+          = haml :party_3
+          = haml :party_2
+          = haml :party_1
+
+      %div.page-margin

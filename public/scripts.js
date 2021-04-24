@@ -31,7 +31,7 @@ const countdown = (date) => {
     } else {
       counter.style = "display: block;";
       zoomLink.style = "display: none;"
-      counter.innerHTML = `Zoom link to appear in:<br />${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
+      counter.innerHTML = `${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
     }
   }
 
@@ -44,19 +44,19 @@ const width = (progress, duration) => {
 }
 
 const player = () => {
-  const artist = document.getElementById("artist");
+  const artist = document.querySelector(".now-playing .artist");
   if (!artist) { return; }
-  const song = document.getElementById("song");
-  const image = document.getElementById("image");
-  const progress_bar = document.getElementById("progress_bar");
-  const time_remaining = document.getElementById("time_remaining");
-  const noteElement = document.getElementById("note");
+  const song = document.querySelector(".now-playing .song");
+  const image = document.querySelector(".now-playing .image");
+  const progress_bar = document.querySelector(".progress-container .progress-bar");
+  const time_remaining = document.querySelector(".progress-container .time-remaining");
+  const noteElement = document.querySelector(".now-playing .note");
 
   let iteration = 0;
   setInterval(() => {
     iteration += 1;
     if (iteration % 5 === 0) {
-      fetch('/np')
+      fetch(`/np?junk=${Math.random()}`)
         .then(response => response.json())
         .then(data => {
           if (!!data && !!data.title) {

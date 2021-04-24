@@ -1,0 +1,112 @@
+:root {
+  --first-button-bg: #FDCE10;
+  --second-button-bg: #A09AB5;
+  --third-button-bg: #00CFC0;
+}
+
+.page-margin {
+  background-color: #464646;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  height: 100vh;
+}
+
+a.button {
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 700;
+  background-color: #93C21A;
+  border: 1px solid black;
+  text-decoration: none;
+  color: black;
+  font-size: 2em;
+  font-family: Palitino, serif;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+img#dancers {
+  width: 100%;
+}
+
+img#dancers-header {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.grid .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.dancers-below-text{
+  background-color: black;
+  color: white;
+  padding: 2em 1em 1em 1em;
+  margin-top: -1em;
+}
+
+.partner-logo {
+  width: 200px;
+}
+
+.img-rt {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  text-align: justify;
+  column-gap: 1em;
+}
+
+#counter, #zoom-link {
+  font-size: 1.5em;
+}
+
+#counter {
+  color: red;
+}
+
+li {
+  list-style: disc;
+  margin-left: 1em;
+}
+
+@media screen and (max-width: 1000px) {
+  .grid {
+    grid-template-columns: 0 1fr 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .img-rt {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  #counter {
+    font-size: 25pt;
+  }
+
+}

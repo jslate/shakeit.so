@@ -66,6 +66,10 @@ get '/about' do
   haml :about
 end
 
+get '/player' do
+  haml :player
+end
+
 get '/international' do
   haml :international
 end
