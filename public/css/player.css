@@ -1,0 +1,89 @@
+:root {
+  --player-bg: #000;
+  --player-tx: #FFF;
+  --progress-bg: #4c4694;
+  --progress-container-bg: #A6A6A6;
+}
+
+.now-playing-container {
+  width: 320px;
+  background-color: var(--player-bg);
+  color: var(--player-tx);
+  padding: 10px;
+  border-radius: 5px;
+  display: grid;
+}
+
+.now-playing {
+  display: grid;
+  margin-bottom: 10px;
+  grid-template-columns: 2fr 3fr;
+}
+
+.now-playing  .song {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.now-playing .artist {
+  font-size: 1rem;
+}
+
+.now-playing .image {
+  width: 100%;
+}
+
+.now-playing .note {
+  text-align: right;
+  margin-right: 15px;
+  font-size: 1rem;
+}
+
+.now-playing .song-info {
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.progress-container {
+  position: relative;
+  background-color: var(--progress-container-bg);
+}
+
+.progress-container .progress-bar {
+  height: 30px;
+  text-align: right;
+  background-color: var(--progress-bg);
+}
+
+.progress-container .time-remaining {
+  position: absolute;
+  right: 7px;
+  top: 5px;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 375px) {
+  .now-playing-container {
+    width: 90%;
+  }
+  .now-playing .artist, .now-playing .note {
+    font-size: 0.75rem;
+  }
+
+  .now-playing .song {
+    font-size: 1rem;
+  }
+
+  .progress-container .time-remaining {
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .now-playing-container {
+    width: 100%;
+  }
+}

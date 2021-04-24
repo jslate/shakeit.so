@@ -1,14 +1,20 @@
-%div.box
-  %div.now-playing-container
-    %div.now-playing
-      %div
-        %img#image{ src: image }
-      %div.song-info
-        %div
-          %h1#song= title
-          %h2#artist= "Artist: #{artist}"
-        %div#note
-    %div#progress_container
-      %div#time_remaining= time_remaining
-      %div#progress_bar{ :style => "width: #{progress_percentage}%" }
-        = " "
+%html
+  %head
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    %script{ src: "/scripts.js"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/reset.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/styles.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/player.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/generated-styles.css"}
+
+  %body
+    .now-playing-container.mg-vt-sm-2.mg-hz-sm-2
+      .now-playing
+        %img.image{ src: "/images/twice-as-hard.jpg" }
+        .song-info
+          .song Twice As Hard
+          .artist The Black Crowes
+          .note Keep rockin'
+      .progress-container
+        .time-remaining -2:34
+        .progress-bar{ style: "width: 20%" }

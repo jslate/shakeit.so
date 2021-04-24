@@ -34,6 +34,25 @@ class SpotifyClient
     )
   end
 
+  def latest_playlists
+    playlists.items.find { |playlist| playlist.name.match?(/D\d+\b/) }.first(5)
+  end
+
+  private
+
+  def playlist(url)
+    request = Net::HTTP::Get.new(url)
+    request["Accept"] = "application/json"
+    request["Content-Type"] = "application/json"
+    request["Authorization"] = "Bearer #{access_token}"
+    response = Net::HTTP.start(
+      CURRENTLY_PLAYING_URI.hostname,
+      CURRENTLY_PLAYING_URI.port,
+      use_ssl: true) { |http| http.request(request) }
+
+    response.body && JSON.parse(response.body, object_class: OpenStruct)
+  end
+
   def playlists
     request = Net::HTTP::Get.new(USER_PLAYLISTS_URI)
     request["Accept"] = "application/json"
@@ -45,8 +64,6 @@ class SpotifyClient
       use_ssl: true) { |http| http.request(request) }
     response.body && JSON.parse(response.body, object_class: OpenStruct)
   end
-
-  private
 
   def access_token
     access_token_from_file || access_token_from_spotify

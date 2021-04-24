@@ -2,53 +2,53 @@
   %head
     <meta name="viewport" content="width=device-width, initial-scale=1">
     %script{ src: "/scripts.js"}
-    %link{:rel => :stylesheet, :type => :"text/css", :href => "/reset.css"}
-    %link{:rel => :stylesheet, :type => :"text/css", :href => "/styles.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/reset.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/styles.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/generated-styles.css"}
     %meta{ property: "og:url", content: "https://www.shakeit.so" }
     %meta{ property: "og:type", content: "website" }
     %meta{ property: "og:title", content: "Shake It So!" }
     %meta{ property: "og:description", content: "Shake It So is all about dancing, on Zoom, for fun and for good!" }
     %meta{ property: "og:image", content: "https://www.shakeit.so/images/shake-it-so-logo-meta.png" }
   %body
-    %div.container
-      = haml :header
+    %div.grid
 
-      %div.grid
-        %div.flex_column
-          %div.box
-            %h1
-              Join Us Saturday, May 8 at 8PM ET for our next International Dance Celebration!
+      %div.page-margin
+      %div.container
+        %div.mg-tp-sm-1
+          %img#dancers-header{ src: "/images/dancer-header.svg"  }
+          %h1.mg-tp-sm-2.mg-bt-sm-2.pd-hz-sm-1.text-align-center
+            International Dance Celebration May 8, 8PM ET
+          %h1.mg-bt-sm-2.text-align-center
+            %div#counter{ style: "display: none" }
+            %div#zoom-link{ style: "display: none" }
+          %img#dancers{ src: "/images/dancers-on-grass.svg"  }
+          %div.dancers-below-text.pd-bt-sm-2
+            This month, we are very excited to be working with
+            Youth and Family Enrichment Services, Inc., whose mission is to educate,
+            inspire, and empower members of at-risk, immigrant communities in Boston.
 
-            .buttons
-              %div.countdown
-                %div#counter{ style: "display: none" }
-                %div#zoom-link{ style: "display: none" }
-                  %a{ href: "https://zoom.us/j/95444452847?pwd=UE9xd0o4Ky80eUdGSXdjR2FCbmtSZz09" }
-                    Launch Zoom
+        .pd-hz-sm-1.mg-tp-sm-2
+          .img-rt
+            %div
+              The mission of Youth and Family Enrichment Services, Inc. is to educate,
+              inspire, and empower members of at-risk, immigrant communities in Boston. YoFES is committed to  providing
+              children, families, and adult individuals with the necessary tools to lead successful, healthy, and
+              fulfilling lives in the face of poverty, social and racial inequity, and cultural transitions.
+            %a{ href: "https://www.yofes.org/programs" }
+              %img.mg-vt-sm-1.partner-logo{ src: "/images/yofes.webp" }
 
-                  %div Passcode: 705249
+        .pd-hz-sm-1.mg-tp-sm-2.mg-bt-sm-3
+          %a.button{ href: "https://www.gofundme.com/manage/shake-it-so-intl-dance-celebration-for-yosef" }
+            Donate to YoFES
 
-                  %div If you can't get on, send a text to 978-758-9931
+        .pd-hz-sm-1.mg-v2-sm-2
+          %h2 Once a month not enough for ya?
 
-              %a.request-button{ href: "https://docs.google.com/forms/d/e/1FAIpQLSdvQi87VJ8CpQCfehIQiVYuDEKrEdP3y4JH5Xzss3FZV40cMQ/viewform?usp=sf_link" }
-                %div Make a Request
+          .pd-vt-sm-1
+            We also host free morning parties Tuesday through Friday at 8-8:40AM Eastern Time.
+            If you would like to join, you can <a href="https://forms.gle/awegVU55wxXGeDqN9">sign up</a> to get the Zoom link.
 
-              %a.donate-button{ href: "https://secure.lglforms.com/form_engine/s/Nvi4Gx7qgiMBA52P9fwFHA" }
-                %div Donate
-
-
-            %img{ src: "/images/dancers.png", width: "100%", style: "margin-bottom: 1em" }
-
-            %p
-              Every month, Shake It So hosts an international dance celebration to shine light on a non-profit while adding
-              music and dance to your soul. Each session is one hour long and no RSVP required.
-
-          %h2 Previous Events
-          = haml :party_3
-          = haml :party_2
-          = haml :party_1
-
-        %div.flex_column.side
-          %div.box
-            <a href="https://forms.gle/awegVU55wxXGeDqN9">Sign up</a>
-            to join our morning parties Tuesday through Friday at 8-8:40AM Eastern Time.
+        .pd-hz-sm-1.mg-tp-sm-2.mg-bt-sm-6
+          Learn more about our <a href="/international">international dance parties</a>.
+      %div.page-margin
