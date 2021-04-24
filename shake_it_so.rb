@@ -55,13 +55,13 @@ class ShakeItSo < Sinatra::Base
     @now_playing = SpotifyClient.new.now_playing
   end
 
-before do
-  expires 600, :public, :must_revalidate
-end
+  before do
+    expires 600, :public, :must_revalidate
+  end
 
-get '/' do
-  haml :index
-end
+  get '/' do
+    haml :index
+  end
 
   get '/about' do
     haml :about
