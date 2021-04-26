@@ -2,17 +2,62 @@
   %head
     <meta name="viewport" content="width=device-width, initial-scale=1">
     %script{ src: "/scripts.js"}
-    %link{:rel => :stylesheet, :type => :"text/css", :href => "/reset.css"}
-    %link{:rel => :stylesheet, :type => :"text/css", :href => "/styles.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/reset.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/styles.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/generated-styles.css"}
+    %meta{ property: "og:url", content: "https://www.shakeit.so" }
+    %meta{ property: "og:type", content: "website" }
+    %meta{ property: "og:title", content: "Shake It So!" }
+    %meta{ property: "og:description", content: "Shake It So is all about dancing, on Zoom, for fun and for good!" }
+    %meta{ property: "og:image", content: "https://www.shakeit.so/images/shake-it-so-logo-meta.png" }
   %body
-    %div.container
-      = haml :header
+    %div.grid
 
-      %div.grid
+      %div.page-margin
+      %div.container
+        .mg-vt-sm-1.pd-hz-sm-1
+          %a{ href: "/" }
+            %img#dancers-header{ src: "/images/dancer-header.svg"  }
 
-        %div.flex_column
-          = haml :intro
+          %h1.mg-vt-sm-1 About Us
 
-        %div.flex_column.side
-          = haml :video2
-          = haml :video1
+          %p.mg-vt-sm-1
+            When I started what eventually became Shake It So in October of 2020, it was just me dancing on Zoom and
+            trying to convince my friends on Facebook to join me. It grew, very slowly at first, but then later, slightly
+            less slowly. But having even just a few friends was enough to get me out of bed and into my basement "dance studio"
+            (using the term quite broadly). And I was having a blast dancing. And that might have been enough.
+
+          %p.mg-vt-sm-1
+            But after the 2020 election, I felt it was important to be engaged some kind of social action. So I asked someone
+            for whom I have a lot of respect, "What should I do?" He recalled a quote from <a href="https://en.wikipedia.org/wiki/Howard_Thurman">Howard Thurman</a>:
+
+          %blockquote
+            “Don’t ask what the world needs. Ask what makes you come alive, and go do it.
+            Because what the world needs is people who have come alive.” —Howard Thurman
+
+          %p.mg-vt-sm-1
+            That was easy, I knew what lighted me up, the music I loved, and dancing to it! So I started planning my first
+            <a href="/international">international dance celebration</a>. I asked around
+            for a name, and my church choir director sent me an email: “My husband just looked me square in the face and said 'Shake it.'”
+            Turns out “.so” is a lot cheaper than “.com,” so there you have it.
+
+          %p.mg-vt-sm-1
+            Since then, I've been on Zoom just about every Tuesday - Friday at 8AM ET for 40 minutes, usually with at least a couple of
+            friends. I make a new playlist for each morning, except when someone guest DJs, which is usually on a Friday. And every month,
+            we have a big party and raise money for some great cause.
+
+          %p.mg-vt-sm-1
+            Some people think it's weird. Some people get it right away. A few have to warm up to the idea. But everyone who joins in
+            seems to have a great time. I hope you'll consider joining us, too! Fill out the <a href="https://forms.gle/awegVU55wxXGeDqN9">sign up</a>
+            form to get the Zoom link for the morning parties, and go to the <a href="/">home page</a> to find out about the next big event.
+
+          %h2.mg-tp-sm-3 Videos
+
+          %p.mg-vt-sm-1 Here are some videos I've made about my events:
+
+          .pd-hz-sm-1.mg-vt-sm-2
+            = haml :video2
+          .pd-hz-sm-1.mg-vt-sm-2
+            = haml :video1
+
+      %div.page-margin

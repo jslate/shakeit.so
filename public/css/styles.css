@@ -89,14 +89,35 @@ img#dancers-header {
   color: red;
 }
 
+blockquote {
+  border: 5px inset #848484;
+  border-radius: 24px 0px 0px 0px;
+  font-size: 2em;
+  font-family: Palitino, serif;
+  margin: 2rem 12rem;
+  padding: 3rem;
+}
+
 li {
   list-style: disc;
   margin-left: 1em;
 }
 
+@media screen and (max-width: 1300px) {
+  blockquote {
+    margin: 2rem 6rem;
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .grid {
     grid-template-columns: 0 1fr 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  blockquote {
+    margin: 2rem 2rem;
   }
 }
 
@@ -107,6 +128,10 @@ li {
   }
   #counter {
     font-size: 25pt;
+  }
+  blockquote {
+    margin: 2rem 0rem;
+    font-size: 1.5em;
   }
 
 }
