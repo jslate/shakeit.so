@@ -35,7 +35,10 @@ class SpotifyClient
   end
 
   def latest_playlists
-    playlists.items.find { |playlist| playlist.name.match?(/D\d+\b/) }.first(5)
+    matches = playlists.items.select do |playlist|
+      playlist.name.match?(/D\d+\b/) || playlist.name.match?(/WDP\d+\b/)
+    end
+    matches.first(10).map(&:id)
   end
 
   private

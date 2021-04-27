@@ -79,21 +79,7 @@ class ShakeItSo < Sinatra::Base
     load_data
     data = @now_playing.nil? ? fake_data : format_data
 
-    ids = %w(
-      4Ccr10f8JepapNHDDTg5PC
-      1vben8XI8XjYYRYYq4btzs
-      1rvkADg0jDMKqqBfKBU0kg
-      7nDWpI1cXfwpfExpw9YiEE
-      0JWEWw29vix9VbKocExYKJ
-      6EHev7ILWpnonREk2A4qlQ
-      7MMb9BzGTprM0llU0j6yV6
-      0ZujLOxJxQzNYRM5nCkkzS
-      1YzDStyaFX6slaxMXJ5YXc
-      3N22XQ8Y4B6DeUvOWDERwI
-      4a80NU4ysAEjPLyeQfWuQH
-      7IA91lSLLVgf5Yf0oIOBZm
-      2H0jnKkKRyOSBG5Gq06I5E
-    )
+    ids = SpotifyClient.new.latest_playlists
 
     haml :playlists, locals: data.merge(ids: ids)
   end

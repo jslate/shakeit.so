@@ -2,23 +2,29 @@
   %head
     <meta name="viewport" content="width=device-width, initial-scale=1">
     %script{ src: "/scripts.js"}
-    %link{:rel => :stylesheet, :type => :"text/css", :href => "/reset.css"}
-    %link{:rel => :stylesheet, :type => :"text/css", :href => "/styles.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/reset.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/styles.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/generated-styles.css"}
+    %meta{ property: "og:url", content: "https://www.shakeit.so" }
+    %meta{ property: "og:type", content: "website" }
+    %meta{ property: "og:title", content: "Shake It So!" }
+    %meta{ property: "og:description", content: "Shake It So is all about dancing, on Zoom, for fun and for good!" }
+    %meta{ property: "og:image", content: "https://www.shakeit.so/images/shake-it-so-logo-meta.png" }
   %body
-    %div.container
-      = haml :header
+    %div.grid
 
-      %div.grid
+      %div.page-margin
+      %div.container
+        .mg-vt-sm-1.pd-hz-sm-1
+          %a{ href: "/" }
+            %img#dancers-header{ src: "/images/dancer-header.svg"  }
 
-        %div.flex_column
-          %div.box.intro
-            %h1 Playlists
-            %p
-              Every morning party, and each monthly International Dance Celebration, has a carefully curated playlist. Here are our most recent.
+          %h1.mg-vt-sm-1 Playlists
+
+          .mg-vt-sm-1
+            Every morning party, and each monthly International Dance Celebration, has a carefully curated playlist.
+            Here are the 10 most recent. Most Fridays feature a guest DJ, I've copied those lists to here as well.
 
           - ids.each do |id|
-            %div.box
+            .mg-vt-sm-1
               <iframe src="https://open.spotify.com/embed/playlist/#{id}" width="420" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-
-        %div.flex_column.side
-          = haml :player, locals: locals
