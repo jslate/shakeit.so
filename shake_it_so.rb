@@ -11,14 +11,7 @@ require "./google_client"
 require "./spotify_client"
 require "./note"
 
-DB = Sequel.connect(
-  adapter: "postgres",
-  host: ENV.fetch("DB_HOST"),
-  database: ENV.fetch("DB_NAME"),
-  user: ENV["DB_USERNAME"],
-  password: ENV["DB_PASSWORD"],
-)
-
+DB = Sequel.connect(ENV.fetch("DATABASE_URL"))
 require "./models/party"
 require "./models/response"
 
