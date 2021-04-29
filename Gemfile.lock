@@ -67,6 +67,7 @@ GEM
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     os (1.1.1)
+    pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -81,6 +82,7 @@ GEM
     retriable (3.1.2)
     rexml (3.2.4)
     ruby2_keywords (0.0.2)
+    sequel (5.43.0)
     signet (0.14.1)
       addressable (~> 2.3)
       faraday (>= 0.17.3, < 2.0)
@@ -114,7 +116,9 @@ DEPENDENCIES
   dotenv
   google-api-client
   haml
+  pg
   pry
+  sequel
   sinatra
   sinatra-contrib
 

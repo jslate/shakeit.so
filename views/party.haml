@@ -1,0 +1,61 @@
+%html
+  %head
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    %script{ src: "/scripts.js"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/reset.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/styles.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/generated-styles.css"}
+    %meta{ property: "og:url", content: "https://www.shakeit.so" }
+    %meta{ property: "og:type", content: "website" }
+    %meta{ property: "og:title", content: "Shake It So!" }
+    %meta{ property: "og:description", content: "Shake It So is all about dancing, on Zoom, for fun and for good!" }
+    %meta{ property: "og:image", content: "https://www.shakeit.so/images/shake-it-so-logo-meta.png" }
+  %body
+    %div.grid
+
+      %div.page-margin
+      %div.container
+        .mg-vt-sm-1.pd-hz-sm-1
+          %a{ href: "/" }
+            %img#dancers-header{ src: "/images/dancer-header.svg"  }
+
+          %h1.mg-tp-sm-1.mg-bt-sm-2= party.name
+
+          %form{ method: :post }
+            .form-fields
+              %label.mg-bt-sm-1
+                %span Name
+                %br
+                %input{ type: :text, name: :name, required: true }
+
+              %label.mg-bt-sm-1
+                %span Email
+                %br
+                %input{ type: :email, name: :email }
+                %em Your email will <strong>not</strong> be visible to others
+
+              %label.mg-bt-sm-1
+                %input{ type: :checkbox, name: :email_opt_in_this_event }
+                %span Email me about this event
+
+              %label.mg-bt-sm-1
+                %input{ type: :checkbox, name: :email_opt_in }
+                %span Email me about future events
+
+              %label.mg-vt-sm-1
+                %div Public note
+                %textarea{ type: :text, name: :note }
+                %em Your note <strong>will</strong> be visible to others
+            .mg-vt-sm-1
+              %input{ type: :submit, value: "Submit" }
+
+          %h2.mg-vt-sm-2 Responses
+
+          - responses.each do |response|
+            .mg-vt-sm-1.box
+              = response.name
+              .mg-bt-sm-1.note
+                = response.note
+              .mg-tp-sm-1.note
+                = response.created_at.strftime("%a %b %e %Y %l:%m %p %z")
+      %div.page-margin

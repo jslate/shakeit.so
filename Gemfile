@@ -11,3 +11,5 @@ gem "arbre"
 gem "haml"
 gem "google-api-client"
 gem 'dotenv'
+gem "sequel"
+gem "pg"

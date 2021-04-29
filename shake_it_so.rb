@@ -5,10 +5,22 @@ require "json"
 require "sinatra"
 require "sinatra/json"
 require "pry"
+require "sequel"
 require "haml"
 require "./google_client"
 require "./spotify_client"
 require "./note"
+
+DB = Sequel.connect(
+  adapter: "postgres",
+  host: ENV.fetch("DB_HOST"),
+  database: ENV.fetch("DB_NAME"),
+  user: ENV["DB_USERNAME"],
+  password: ENV["DB_PASSWORD"],
+)
+
+require "./models/party"
+require "./models/response"
 
 class ShakeItSo < Sinatra::Base
   def format_time(milliseconds)
@@ -87,5 +99,25 @@ class ShakeItSo < Sinatra::Base
   get "/np" do
     load_data
     json(format_data)
+  end
+
+  get "/party/:id" do
+    party = Party.first(id: params[:id])
+    responses = Response.where(party_id: party.id).reverse_order(:created_at).all
+    haml :party, locals: { party: party, responses: responses }
+  end
+
+  post "/party/:id" do
+    Response.create(
+      party_id: params[:id],
+      name: params[:name],
+      email: params[:email],
+      email_opt_in_this_event: params[:email_opt_in_this_event],
+      email_opt_in: params[:email_opt_in],
+      note: params[:note],
+      created_at: Time.now,
+      updated_at: Time.now,
+    )
+    redirect "/party/#{params[:id]}"
   end
 end
