@@ -73,6 +73,9 @@ const player = () => {
             if (note && note.match(/^\d{4}$/)) {
               const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 5);
               noteElement.innerHTML = note.slice(0, position) + "????".slice(position);
+            } else if (note && note.match(/.+;.+/)) {
+              const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 2);
+              noteElement.innerHTML = `<span style="color: lightblue">${note.split(";")[position]}</span>`
             } else if (!!note) {
               noteElement.innerHTML = note;
             } else {
