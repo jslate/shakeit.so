@@ -97,7 +97,7 @@ class ShakeItSo < Sinatra::Base
   get "/party/:id" do
     party = Party.first(id: params[:id])
     responses = Response.where{created_at < Time.now - 3600}.reverse_order(:created_at).all
-    haml :party, locals: { party: party, responses: responses, thank_you: params[:thank_you].present? }
+    haml :party, locals: { party: party, responses: responses, thank_you: params[:thank_you].present? }, escape_html: true
   end
 
   post "/party/:id" do
