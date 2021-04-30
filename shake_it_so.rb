@@ -96,8 +96,8 @@ class ShakeItSo < Sinatra::Base
 
   get "/party/:id" do
     party = Party.first(id: params[:id])
-    responses = Response.where(party_id: party.id).reverse_order(:created_at).all
-    haml :party, locals: { party: party, responses: responses }
+    responses = Response.where{created_at < Time.now - 3600}.reverse_order(:created_at).all
+    haml :party, locals: { party: party, responses: responses, thank_you: params[:thank_you].present? }
   end
 
   post "/party/:id" do
@@ -111,6 +111,6 @@ class ShakeItSo < Sinatra::Base
       created_at: Time.now,
       updated_at: Time.now,
     )
-    redirect "/party/#{params[:id]}"
+    redirect "/party/#{params[:id]}?thank_you=true"
   end
 end

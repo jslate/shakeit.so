@@ -21,6 +21,9 @@
 
           %h1.mg-tp-sm-1.mg-bt-sm-2= party.name
 
+          - if thank_you
+            .mg-tp-sm-1.mg-bt-sm-2 Thank you! Your response has been recorded and will be reviewed by a moderator before appearing below.
+
           %form{ method: :post }
             .form-fields
               %label.mg-bt-sm-1
@@ -45,7 +48,7 @@
               %label.mg-vt-sm-1
                 %div Public note
                 %textarea{ type: :text, name: :note }
-                %em Your note <strong>will</strong> be visible to others
+                %em Are you coming for a specific reason? Will you be wearing a funny hat? Whatever you want people to know. Your note <strong>will</strong> be visible to others.
             .mg-vt-sm-1
               %input{ type: :submit, value: "Submit" }
 
@@ -57,5 +60,5 @@
               .mg-bt-sm-1.note
                 = response.note
               .mg-tp-sm-1.note
-                = response.created_at.strftime("%a %b %e %Y %l:%m %p %z")
+                = response.created_at.getlocal(TZInfo::Timezone.get("US/Eastern")).strftime("%a %b %e %Y %l:%m %p %Z")
       %div.page-margin
