@@ -13,3 +13,4 @@ gem "google-api-client"
 gem 'dotenv'
 gem "sequel"
 gem "pg"
+gem 'sendgrid-ruby'
