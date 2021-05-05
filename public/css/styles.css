@@ -45,6 +45,10 @@ a.button {
   font-family: Palitino, serif;
 }
 
+a.button.blue {
+  background-color: #287c93;
+}
+
 .text-align-center {
   text-align: center;
 }
