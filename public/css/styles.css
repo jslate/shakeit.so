@@ -89,6 +89,14 @@ img#dancers-header {
   font-size: 1.5em;
 }
 
+#zoom-link a {
+  text-decoration: none;
+}
+
+#zoom-link .passcode {
+  font-size: 2rem;
+}
+
 #counter {
   color: red;
 }
