@@ -48,6 +48,11 @@ const width = (progress, duration) => {
   return `${Math.floor(progress / duration * 100)}%`;
 }
 
+const replacementImages = {
+  "https://i.scdn.co/image/ab67616d00001e02d4a6817b14d3dea6f23c680c": "https://images-na.ssl-images-amazon.com/images/I/61J9Y0GYD7L.jpg",
+  "https://i.scdn.co/image/ab67616d00001e02122fc2d4a47502e72763a092": "http://cps-static.rovicorp.com/3/JPG_500/MI0002/503/MI0002503085.jpg",
+}
+
 const player = () => {
   const artist = document.querySelector(".now-playing .artist");
   if (!artist) { return; }
@@ -72,7 +77,7 @@ const player = () => {
             progress_bar.dataset.progress = data.progress;
             progress_bar.dataset.duration = data.duration;
             song.innerHTML = data.title;
-            image.src = data.image;
+            image.src = replacementImages[data.image] || data.image;
             let note = data.notes[iteration / 5 % data.notes.length];
 
             if (note && note.match(/^\d{4}$/)) {
@@ -105,7 +110,7 @@ const player = () => {
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
-  const date = getLocalTime(new Date('2021-05-09T00:00:00.000000'));
+  const date = getLocalTime(new Date('2021-06-05T00:00:00.000000'));
   // const date = getLocalTime(new Date('2021-05-08T17:00:00.000000'));
   countdown(date);
   player();
