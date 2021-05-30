@@ -6,3 +6,4 @@ tmp/spotify_token.json
 write_token.rb
 .DS_Store
 emails.json
+*-emails.csv

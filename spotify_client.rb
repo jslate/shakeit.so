@@ -34,14 +34,16 @@ class SpotifyClient
     )
   end
 
-  def latest_playlists
+  def latest_playlist_ids
+    latest_playlists(limit: 10).map(&:id)
+  end
+
+  def latest_playlists(limit: 10)
     matches = playlists.items.select do |playlist|
       playlist.name.match?(/D\d+\b/) || playlist.name.match?(/WDP\d+\b/)
     end
-    matches.first(10).map(&:id)
+    matches.first(limit)
   end
-
-  private
 
   def playlist(url)
     request = Net::HTTP::Get.new(url)
@@ -55,6 +57,8 @@ class SpotifyClient
 
     response.body && JSON.parse(response.body, object_class: OpenStruct)
   end
+
+  private
 
   def playlists
     request = Net::HTTP::Get.new(USER_PLAYLISTS_URI)
