@@ -15,7 +15,7 @@ const getLocalTime = (date) => {
 const countdown = (date) => {
   const counter = document.getElementById("counter")
   const zoomLink = document.getElementById("zoom-link");
-  if (!zoomLink) { return; }
+  // if (!zoomLink) { return; }
   const setCountdownValue = () => {
     const totalSeconds = Math.floor((date.valueOf() - new Date().valueOf()) / 1000);
     const totalMinutes = Math.floor(totalSeconds / 60);
@@ -25,18 +25,18 @@ const countdown = (date) => {
     const minutes = totalMinutes % 60;
     const seconds = totalSeconds % 60;
 
-    counter.innerHTML = `${totalDays}d ${hours}h ${minutes}m ${seconds}s`;
+    counter.innerHTML = totalMinutes > 0 ? `${totalDays}d ${hours}h ${minutes}m ${seconds}s` : "&nbsp;"
 
     if (totalMinutes < 30 && totalMinutes > 0) {
       console.log("Show both")
       counter.style = "display: block;";
-      zoomLink.style = "display: block;"
-    } else if (totalMinutes < 0) {
+      if (zoomLink) { zoomLink.style = "display: block;"; }
+    } else if (totalMinutes < 0 && zoomLink) {
       counter.style = "display: none;";
-      zoomLink.style = "display: block;"
+      if (zoomLink) { zoomLink.style = "display: block;"; }
     } else {
       counter.style = "display: block;";
-      zoomLink.style = "display: none;"
+      if (zoomLink) { zoomLink.style = "display: none;"; }
     }
   }
 
@@ -110,7 +110,7 @@ const player = () => {
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
-  const date = getLocalTime(new Date('2021-06-05T00:00:00.000000'));
+  const date = getLocalTime(new Date('2021-06-06T00:00:00.000000'));
   // const date = getLocalTime(new Date('2021-05-08T17:00:00.000000'));
   countdown(date);
   player();
