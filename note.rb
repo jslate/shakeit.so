@@ -5,7 +5,7 @@ class Note
 
   def initialize(row)
     @text, enabled_str, @song_matcher = row
-    @enabled = text.present? && enabled_str.upcase == "TRUE"
+    @enabled = text.present? && enabled_str.present? && enabled_str.upcase == "TRUE"
   end
 
   def show_for_song?(song)
