@@ -149,6 +149,17 @@ li {
   margin-left: 1em;
 }
 
+
+table.data-grid {
+  border-collapse: collapse;
+}
+
+table.data-grid tr, td {
+  border: 1px solid black;
+  padding: 1em;
+  min-width: 100px;
+}
+
 @media screen and (max-width: 1300px) {
   blockquote {
     margin: 2rem 6rem;
