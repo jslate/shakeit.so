@@ -53,6 +53,12 @@ a.button.blue {
   text-align: center;
 }
 
+.quote-attribution {
+  text-align: right;
+  font-size: 17pt;
+  font-style: italic;
+}
+
 img#dancers {
   width: 100%;
 }
