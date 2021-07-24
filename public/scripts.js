@@ -110,7 +110,7 @@ const player = () => {
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
-  const date = getLocalTime(new Date('2021-06-06T00:00:00.000000'));
+  const date = getLocalTime(new Date('2021-08-07T00:00:00.000000'));
   // const date = getLocalTime(new Date('2021-05-08T17:00:00.000000'));
   countdown(date);
   player();
