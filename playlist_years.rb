@@ -2,13 +2,33 @@ require 'dotenv/load'
 require "json"
 require "net/http"
 require "./spotify_client"
+require "pry"
 
+name = ARGV[0]
 client = SpotifyClient.new
-playlist = client.playlist(client.latest_playlists(limit: 1).first.href)
+playlists = client.latest_playlists(limit: 10)
+
+if name.nil?
+  href = playlists.first.href
+else
+  href = playlists.find { |playlist| playlist.name.downcase.include?(name.downcase) }.href
+end
+
+playlist = client.playlist(href)
 
 data = playlist.tracks.items.map do |item|
-  { name: item.track.name, year: item.track.album.release_date }
+  {
+    name: item.track.name,
+    year: item.track.album.release_date,
+    artists: item.track.artists.map(&:name).join("; "),
+    popularity: item.track.popularity,
+  }
 end
 
 puts data.map { |d| d[:name]}
 puts data.map { |d| d[:year].split("-").first }
+puts data.map { |d| "How popular? (1-100); #{d[:popularity]}"}
+
+data.each_with_index do |d, i|
+  puts "#{i+1}. #{d[:name]} - #{d[:artists]}\n"
+end

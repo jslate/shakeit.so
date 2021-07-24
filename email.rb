@@ -5,8 +5,8 @@ include SendGrid
 emails = JSON.parse(File.read("./emails.json")).map { |hash| hash.transform_keys(&:to_sym) }
 
 from = Email.new(email: 'dance@shakeit.so', name: "Shake It So")
-subject = 'Hey dancers! 🕺💃'
-content = Content.new(type: 'text/html', value: File.read("./public/email-drafts/june-20-2021.html"))
+subject = 'Tomorrow 9AM, Saturday Aug 7 🕺💃🇺🇸'
+content = Content.new(type: 'text/html', value: File.read("./public/email-drafts/july-04-2021.html"))
 api_key = ENV['SENDGRID_API_KEY']
 sg = SendGrid::API.new(api_key: api_key)
 
