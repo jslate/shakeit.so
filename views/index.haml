@@ -12,56 +12,34 @@
     %meta{ property: "og:image", content: "https://www.shakeit.so/images/shake-it-so-logo-meta.png" }
   %body
     %div.grid
+
       %div.page-margin
       %div.container
         %div.mg-tp-sm-1
           %img#dancers-header{ src: "/images/dancer-header.svg"  }
-          %h1.mg-tp-sm-2.mg-bt-sm-2.pd-hz-sm-1.text-align-center
-            International Dance Celebration <br />
-            Saturday, August 7, 8PM ET
-          %h1.text-align-center
-            .mg-bt-sm-2#counter{ style: "display: none" }
-            .mg-bt-sm-2#zoom-link{ style: "display: none" }
-              %a{ href: "https://us06web.zoom.us/j/81226719556" }
-                Join On Zoom
+
 
           %img#dancers{ src: "/images/dancers-on-grass.svg"  }
           %div.dancers-below-text.pd-bt-sm-2
-            This month, we are very excited to be raising money for Greater Boston Legal Services!
-            Every day, GBLS attorneys and paralegals provide critical legal advice and representation to low-income
-            individuals. In addition, thousands of other poor families and individuals benefit from the systemic
-            advocacy GBLS carries out on behalf of its clients.
-
-        .pd-hz-sm-1.mg-tp-sm-2
-          .img-rt
-            %div
-              Despite all GBLS' extraordinary work, it is not enough. Every day, three our of five clients with
-              legitimate claims are turned away due to a lack of staffing resources. These people, with meritorious
-              legal claims, have nowhere else to turn to seek justice. GBLS, and those they serve, need our support.
-              Come dance with us to celebrate all they have acheived, and donate to help them do more!
-
-            %img.mg-vt-sm-1.partner-logo{ style: "width: 200px", src: "https://www.gbls.org/themes/gbls/assets/logo.gif", alt: "Greater Boston Legal Services ...and justice for all" }
+            Shake It So is all about dancing, on Zoom and in person, for fun and for good! Join one of
+            our 40 mminute morning or noon dance parties
+            any time, or keep an eye out for our next Saturday night fundraisers.
 
 
-          .pd-hz-sm-1.mg-tp-sm-2.mg-bt-sm-1
-          %a.button{ href: "https://www.gofundme.com/f/shake-it-so-celebration-for-gbls?utm_source=customer&utm_medium=copy_link&utm_campaign=p_cf+share-flow-1" }
-            Donate to Greater Boston Legal Services
+        .pd-hz-sm-1.mg-tp-sm-3.mg-bt-sm-2{ style: "dispay: flex; align-self: center"}
+          %table.data-grid
+            %tr
+              %td Monday
+              %td 12:00 PM ET
+            - %w(Tuesday Wendesday Thursday Friday).each do |day|
+              %tr
+                %td= day
+                %td 8:00 AM ET
 
-          .mg-tp-sm-4
-            You don't have to sign up ahead of time, but we appreciate it if you do!
+        .pd-hz-sm-1
+          If you would like to join, you can <a href="https://docs.google.com/forms/d/e/1FAIpQLSebE3y--4TXnWty-R4F_LVbbF842mKkIthEpyrZX67ayWJXzQ/viewform">sign up</a> to get the Zoom link
+          or check out our most recent <a href="/playlists">playlists</a>.
 
-        .pd-hz-sm-1.mg-tp-sm-2.mg-bt-sm-3
-          %a.button.blue{ href: "/party/#{Party.last.id}" }
-            Sign Up
-
-        .pd-hz-sm-1.mg-v2-sm-2
-          %h2 Once a month not enough for ya?
-
-          .pd-vt-sm-1
-            We also host free 40 minute morning parties every week on Monday at noon and Tuesday through Friday at 8AM Eastern Time.
-            If you would like to join, you can <a href="https://docs.google.com/forms/d/e/1FAIpQLSebE3y--4TXnWty-R4F_LVbbF842mKkIthEpyrZX67ayWJXzQ/viewform">sign up</a> to get the Zoom link
-            or check out our most recent <a href="/playlists">playlists</a>.
-
-        .pd-hz-sm-1.mg-tp-sm-2.mg-bt-sm-6
+        .pd-hz-sm-1.mg-tp-sm-4.mg-bt-sm-6
           Learn more <a href="/about">about us</a> and about our <a href="/international">international dance parties</a>.
       %div.page-margin
