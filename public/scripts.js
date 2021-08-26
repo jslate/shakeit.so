@@ -80,7 +80,7 @@ const player = () => {
             image.src = replacementImages[data.image] || data.image;
             let note = data.notes[iteration / 5 % data.notes.length];
 
-            if (note && note.match(/^\d{4}$/)) {
+            if (note && false && note.match(/^\d{4}$/)) {
               const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 5);
               noteElement.innerHTML = note.slice(0, position) + "????".slice(position);
             } else if (note && note.match(/.+;.+/)) {
