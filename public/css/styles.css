@@ -80,6 +80,11 @@ img#dancers-header {
   margin-top: -1em;
 }
 
+.dancers-below-text a {
+  color: rgb(179, 133, 197);
+  text-decoration: none;
+}
+
 .partner-logo {
   width: 200px;
 }
