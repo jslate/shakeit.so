@@ -171,6 +171,10 @@ table.data-grid tr, td {
   min-width: 100px;
 }
 
+small {
+  font-size: 0.8em;
+}
+
 @media screen and (max-width: 1300px) {
   blockquote {
     margin: 2rem 6rem;
