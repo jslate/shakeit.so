@@ -68,6 +68,10 @@ class ShakeItSo < Sinatra::Base
     haml :index
   end
 
+  get '/hhgh' do
+    haml :index
+  end
+
   get '/about' do
     haml :about
   end

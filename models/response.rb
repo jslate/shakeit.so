@@ -8,6 +8,7 @@ unless DB.tables.include?(:responses)
     column :name, String
     column :note, String
     column :created_at, DateTime
+    column :party_id, Integer
   end
 end
 
