@@ -21,21 +21,42 @@
 
           %h1.mg-tp-sm-1.mg-bt-sm-2= party.name
 
-          - responses.each do |response|
-            .mg-vt-sm-1.box
-              = response.name
-              .mg-bt-sm-1.note
-                = response.note
-              .mg-tp-sm-1.note
-                = response.created_at.getlocal(TZInfo::Timezone.get("US/Eastern")).strftime("%a %b %e %Y %l:%m %p %Z")
-              .mv-vt-sm-1
-                = response.email
-              .mv-vt-sm-1
-                - unless response.show_response
-                  (hidden)
-                - unless response.reviewed
-                  %form{ method: :post, action: "/party_review/#{response.id}/approve" }
-                    %button{ type: :submit} Approve
-                %form{ method: :post, action: "/party_review/#{response.id}/destroy" }
-                  %button{ type: :submit} Destroy
+
+
+          - if logged_in
+
+            %form{ method: :post, action: "/logout" }
+              %button{ type: :submit} Log Out
+
+            - responses.each do |response|
+              .mg-vt-sm-1.box
+                = response.name
+                .mg-bt-sm-1.note
+                  = response.note
+                .mg-tp-sm-1.note
+                  = response.created_at.getlocal(TZInfo::Timezone.get("US/Eastern")).strftime("%a %b %e %Y %l:%m %p %Z")
+                .mv-vt-sm-1
+                  = response.email
+                .mv-vt-sm-1
+                  - unless response.show_response
+                    (hidden)
+                  - unless response.reviewed
+                    %form{ method: :post, action: "/party_review/#{response.id}/approve" }
+                      %button{ type: :submit} Approve
+                  %form{ method: :post, action: "/party_review/#{response.id}/destroy" }
+                    %button{ type: :submit} Destroy
+
+          - else
+            %form{ method: :post, action: "/party_review/#{party.id}" }
+
+            %form{ method: :post }
+              .form-fields
+                %label.mg-bt-sm-1
+                  %span Password
+                  %br
+                  %input{ type: :password, name: :password, required: true }
+                  %br
+                  %br
+                  %input{ type: :submit, value: "Submit" }
+
       %div.page-margin

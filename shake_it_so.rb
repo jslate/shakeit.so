@@ -55,20 +55,7 @@ class ShakeItSo < Sinatra::Base
     }
   end
 
-  def load_data
-    @now_playing = SpotifyClient.new.now_playing
-  end
-
-  def protected!
-    return if authorized?
-    headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
-    halt 401, "Not authorized\n"
-  end
-
-  def authorized?
-    @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-    @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['admin', '@toadly!']
-  end
+  enable :sessions
 
   before do
     expires 600, :public, :must_revalidate
@@ -131,14 +118,20 @@ class ShakeItSo < Sinatra::Base
   end
 
   get '/party_review/:id' do
-    protected!
+    cache_control :no_cache
+    logged_in = session[:logged_in]
     party = Party.first(id: params[:id])
     responses = Response.where(party_id: party.id).reverse_order(:reviewed, :created_at).all
-    haml :party_review, locals: { party: party, responses: responses }, escape_html: true
+    haml :party_review, locals: { logged_in: logged_in, party: party, responses: responses }, escape_html: true
+  end
+
+  post '/party_review/:id' do
+    session[:logged_in] = true if params[:password] == ENV['REVIEW_PASSWORD']
+    redirect "/party_review/#{params[:id]}"
   end
 
   post '/party_review/:response_id/:action' do
-    protected!
+    redirect "/party_review/#{params[:id]}" unless session[:logged_in]
     response = Response.first(id: params[:response_id])
 
     case params[:action]
@@ -147,5 +140,10 @@ class ShakeItSo < Sinatra::Base
     end
 
     redirect "/party_review/#{response.party_id}"
+  end
+
+  post '/logout' do
+    session[:logged_in] = nil
+    redirect '/'
   end
 end
