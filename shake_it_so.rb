@@ -130,8 +130,8 @@ class ShakeItSo < Sinatra::Base
     redirect "/party/#{params[:id]}?thank_you=true"
   end
 
-  get '/party_review_you_will_never_guess_this_url/:id' do
-    # protected!
+  get '/party_review/:id' do
+    protected!
     party = Party.first(id: params[:id])
     responses = Response.where(party_id: party.id).reverse_order(:reviewed, :created_at).all
     haml :party_review, locals: { party: party, responses: responses }, escape_html: true
