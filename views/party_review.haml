@@ -29,6 +29,8 @@
               .mg-tp-sm-1.note
                 = response.created_at.getlocal(TZInfo::Timezone.get("US/Eastern")).strftime("%a %b %e %Y %l:%m %p %Z")
               .mv-vt-sm-1
+                = response.email
+              .mv-vt-sm-1
                 - unless response.show_response
                   (hidden)
                 - unless response.reviewed
