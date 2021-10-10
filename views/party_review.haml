@@ -21,39 +21,6 @@
 
           %h1.mg-tp-sm-1.mg-bt-sm-2= party.name
 
-          - if thank_you
-            .mg-tp-sm-1.mg-bt-sm-2 Thank you! Your response has been recorded and will be reviewed by a moderator before appearing below.
-
-          %form{ method: :post }
-            .form-fields
-              %label.mg-bt-sm-1
-                %span Name
-                %br
-                %input{ type: :text, name: :name, required: true }
-
-              %label.mg-bt-sm-1
-                %span Email
-                %br
-                %input{ type: :email, name: :email, required: true }
-                %em Your email will <strong>not</strong> be visible to others
-
-              %label.mg-bt-sm-1
-                %input{ type: :checkbox, name: :show_response, checked: true }
-                %span Show my name and note on this page
-
-              %label.mg-bt-sm-1
-                %input{ type: :checkbox, name: :email_opt_in }
-                %span Email me about future events
-
-              %label.mg-vt-sm-1
-                %div Public note
-                %textarea{ type: :text, name: :note }
-                %em Are you coming for a specific reason? Will you be wearing a funny hat? Whatever you want people to know. Your note <strong>will</strong> be visible to others.
-            .mg-vt-sm-1
-              %input{ type: :submit, value: "Submit" }
-
-          %h2.mg-vt-sm-2 Responses
-
           - responses.each do |response|
             .mg-vt-sm-1.box
               = response.name
@@ -61,4 +28,12 @@
                 = response.note
               .mg-tp-sm-1.note
                 = response.created_at.getlocal(TZInfo::Timezone.get("US/Eastern")).strftime("%a %b %e %Y %l:%m %p %Z")
+              .mv-vt-sm-1
+                - unless response.show_response
+                  (hidden)
+                - unless response.reviewed
+                  %form{ method: :post, action: "/party_review/#{response.id}/approve" }
+                    %button{ type: :submit} Approve
+                %form{ method: :post, action: "/party_review/#{response.id}/destroy" }
+                  %button{ type: :submit} Destroy
       %div.page-margin

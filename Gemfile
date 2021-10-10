@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-gem "sinatra"
-gem 'sinatra-contrib'
-gem "pry"
-gem "arbre"
-gem "haml"
-gem "google-api-client"
+gem 'arbre'
 gem 'dotenv'
-gem "sequel"
-gem "pg"
+gem 'google-api-client'
+gem 'haml'
+gem 'pg'
+gem 'pry'
+gem 'rubocop'
 gem 'sendgrid-ruby'
+gem 'sequel'
+gem 'sinatra'
+gem 'sinatra-contrib'

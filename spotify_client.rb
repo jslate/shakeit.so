@@ -1,36 +1,39 @@
-require "./song"
+# frozen_string_literal: true
+
+require './song'
 
 class SpotifyClient
-  JSON_PATH = "./tmp/spotify_token.json".freeze
+  JSON_PATH = './tmp/spotify_token.json'
   TOKEN_FORM_DATA = {
-    grant_type: "refresh_token".freeze,
-    refresh_token: ENV["SPOTIFY_REFRESH_TOKEN"].freeze,
-    client_id: ENV["SPOTIFY_CLIENT_ID"].freeze,
-    client_secret: ENV["SPOTIFY_CLIENT_SECRET"].freeze,
+    grant_type: 'refresh_token',
+    refresh_token: ENV['SPOTIFY_REFRESH_TOKEN'],
+    client_id: ENV['SPOTIFY_CLIENT_ID'],
+    client_secret: ENV['SPOTIFY_CLIENT_SECRET']
   }.freeze
-  ACCESS_TOKEN_URI = URI("https://accounts.spotify.com/api/token").freeze
-  CURRENTLY_PLAYING_URI = URI("https://api.spotify.com/v1/me/player/currently-playing").freeze
-  USER_PLAYLISTS_URI = URI("https://api.spotify.com/v1/users/jslate73/playlists").freeze
+  ACCESS_TOKEN_URI = URI('https://accounts.spotify.com/api/token').freeze
+  CURRENTLY_PLAYING_URI = URI('https://api.spotify.com/v1/me/player/currently-playing').freeze
+  USER_PLAYLISTS_URI = URI('https://api.spotify.com/v1/users/jslate73/playlists').freeze
 
   def now_playing
     request = Net::HTTP::Get.new(CURRENTLY_PLAYING_URI)
-    request["Accept"] = "application/json"
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{access_token}"
+    request['Accept'] = 'application/json'
+    request['Content-Type'] = 'application/json'
+    request['Authorization'] = "Bearer #{access_token}"
     response = Net::HTTP.start(
       CURRENTLY_PLAYING_URI.hostname,
       CURRENTLY_PLAYING_URI.port,
-      use_ssl: true) { |http| http.request(request) }
+      use_ssl: true
+    ) { |http| http.request(request) }
 
     return if response.body.nil?
 
     song_data = JSON.parse(response.body, object_class: OpenStruct)
     Song.new(
       title: song_data.item.name,
-      artist: song_data.item.artists.map(&:name).join(", "),
+      artist: song_data.item.artists.map(&:name).join(', '),
       duration: song_data.item.duration_ms.to_i,
       progress: song_data.progress_ms.to_i,
-      image: song_data.item.album.images[1].url,
+      image: song_data.item.album.images[1].url
     )
   end
 
@@ -47,13 +50,14 @@ class SpotifyClient
 
   def playlist(url)
     request = Net::HTTP::Get.new(url)
-    request["Accept"] = "application/json"
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{access_token}"
+    request['Accept'] = 'application/json'
+    request['Content-Type'] = 'application/json'
+    request['Authorization'] = "Bearer #{access_token}"
     response = Net::HTTP.start(
       CURRENTLY_PLAYING_URI.hostname,
       CURRENTLY_PLAYING_URI.port,
-      use_ssl: true) { |http| http.request(request) }
+      use_ssl: true
+    ) { |http| http.request(request) }
 
     response.body && JSON.parse(response.body, object_class: OpenStruct)
   end
@@ -62,13 +66,14 @@ class SpotifyClient
 
   def playlists
     request = Net::HTTP::Get.new(USER_PLAYLISTS_URI)
-    request["Accept"] = "application/json"
-    request["Content-Type"] = "application/json"
-    request["Authorization"] = "Bearer #{access_token}"
+    request['Accept'] = 'application/json'
+    request['Content-Type'] = 'application/json'
+    request['Authorization'] = "Bearer #{access_token}"
     response = Net::HTTP.start(
       CURRENTLY_PLAYING_URI.hostname,
       CURRENTLY_PLAYING_URI.port,
-      use_ssl: true) { |http| http.request(request) }
+      use_ssl: true
+    ) { |http| http.request(request) }
     response.body && JSON.parse(response.body, object_class: OpenStruct)
   end
 
@@ -77,10 +82,10 @@ class SpotifyClient
   end
 
   def access_token_from_file
-    return unless File.exists?(JSON_PATH)
+    return unless File.exist?(JSON_PATH)
 
     data = JSON.parse(File.read(JSON_PATH))
-    data["access_token"] if Time.now.to_i < data["expiration"].to_i
+    data['access_token'] if Time.now.to_i < data['expiration'].to_i
   end
 
   def access_token_from_spotify
@@ -91,8 +96,8 @@ class SpotifyClient
     request.set_form_data(TOKEN_FORM_DATA)
     response = http.request(request)
     parsed_response = JSON.parse(response.body)
-    token = parsed_response["access_token"]
-    save_token(token, parsed_response["expires_in"].to_i)
+    token = parsed_response['access_token']
+    save_token(token, parsed_response['expires_in'].to_i)
     token
   end
 

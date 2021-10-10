@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'uri'
 require 'net/http'
 require 'json'
 
 class GoogleClient
-  API_KEY = ENV["GOOGLE_API_KEY"].freeze
-  GOOGLE_SHEETS_HOST = URI("https://sheets.googleapis.com").freeze
-  SHEET_ID = "1FDQWEK7ZRYt4egJVKE8CHZKnopi8S6UCCbzxbf9OciQ".freeze
+  API_KEY = ENV['GOOGLE_API_KEY']
+  GOOGLE_SHEETS_HOST = URI('https://sheets.googleapis.com').freeze
+  SHEET_ID = '1FDQWEK7ZRYt4egJVKE8CHZKnopi8S6UCCbzxbf9OciQ'
 
   def initialize(range_start, range_end)
     @range_start = range_start
@@ -19,7 +21,8 @@ class GoogleClient
     response = Net::HTTP.start(
       GOOGLE_SHEETS_HOST.hostname,
       GOOGLE_SHEETS_HOST.port,
-      use_ssl: true) { |http| http.request(request) }
+      use_ssl: true
+    ) { |http| http.request(request) }
     response.body && JSON.parse(response.body)
   end
 

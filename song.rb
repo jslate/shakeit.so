@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class Song
-  attr_reader  :title, :artist, :duration, :progress, :image
-  def initialize(title:,artist:,duration:,progress:,image:)
+  attr_reader :title, :artist, :duration, :progress, :image
+
+  def initialize(title:, artist:, duration:, progress:, image:)
     @title = title
     @artist = artist
     @duration = duration

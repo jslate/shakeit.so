@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 widths = { sm: 0, md: 376, lg: 769 }
 
 sides = {
@@ -5,8 +7,8 @@ sides = {
   bt: [:bottom],
   rt: [:right],
   lt: [:left],
-  hz: [:left, :right],
-  vt: [:bottom, :top],
+  hz: %i[left right],
+  vt: %i[bottom top]
 }
 
 attrs = { pd: :padding, mg: :margin }
@@ -20,12 +22,12 @@ widths.each do |width, width_value|
     sides.each do |side, props|
       sizes.each do |size|
         puts "  .#{attr}-#{side}-#{width}-#{size} {"
-          props.each do |prop|
-            puts "    #{attr_value}-#{prop}: #{size}rem;"
-          end
-        puts "  }"
+        props.each do |prop|
+          puts "    #{attr_value}-#{prop}: #{size}rem;"
+        end
+        puts '  }'
       end
     end
   end
-  puts "}"
+  puts '}'
 end
