@@ -55,6 +55,10 @@ class ShakeItSo < Sinatra::Base
     }
   end
 
+  def load_data
+    @now_playing = SpotifyClient.new.now_playing
+  end
+
   enable :sessions
 
   before do
