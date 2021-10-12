@@ -27,9 +27,36 @@
             event. Just shoot it on your phone in portrait view. You can do the English
             and the Spanish in one video, if you are up for it, or just one or the other.
 
+          %p.mg-vt-sm-1
+            %strong Fill out the form below for your customized scripts in both languages!
+
+          %form{ id: 'script-form' }
+            .form-fields
+              %label.mg-tp-sm-1
+                %span Name
+                %br
+                %input{ type: :text, name: :name }
+              -# %label.mg-tp-sm-1
+              -#   %span Position
+              -#   %br
+              -#   %input{ type: :text, name: :position }
+              -# %label.mg-tp-sm-1
+              -#   %span Organization
+              -#   %br
+              -#   %input{ type: :text, name: :organization }
+              %label.mg-tp-sm-1
+                %span You will be attending:
+                %br
+                %input{ type: :radio, name: :session, value: :both, checked: true } Both sessions
+                %br
+                %input{ type: :radio, name: :session, value: :afternoon } The afternoon session
+                %br
+                %input{ type: :radio, name: :session, value: :evening } The evening session
+
+
           %h2.mg-bt-sm-1.mg-tp-sm-2 English
 
-          %p.mg-vt-sm-1
+          %p.mg-vt-sm-1{ id: "english-script" }
             Hi, I am [name/nombre]. I am a [volunteer] (position/posición) with
             [Shake It So] (organization/organización) and I am
             super excited to join the dance party on October thirtieth to
@@ -44,7 +71,7 @@
 
           %h2.mg-bt-sm-1.mg-tp-sm-2 Spanish
 
-          %p.mg-vt-sm-1
+          %p.mg-vt-sm-1{ id: "spanish-script" }
             Hola, me llamo [name/nombre]. Soy [voluntario] (position/posición)
             en [Shake It So] (organization/organización) y
             estoy muy emocionado por sumarme a la fiesta de baile el treinta de

@@ -1,3 +1,6 @@
+
+
+
 const formatTime = (milliseconds) => {
   const totalSeconds = milliseconds / 1000;
   const minutes = Math.floor(totalSeconds / 60);
@@ -15,7 +18,7 @@ const getLocalTime = (date) => {
 const countdown = (date) => {
   const counter = document.getElementById("counter")
   const zoomLink = document.getElementById("zoom-link");
-  // if (!zoomLink) { return; }
+  if (!counter) { return; }
   const setCountdownValue = () => {
     const totalSeconds = Math.floor((date.valueOf() - new Date().valueOf()) / 1000);
     const totalMinutes = Math.floor(totalSeconds / 60);
@@ -114,4 +117,58 @@ window.addEventListener('DOMContentLoaded', (event) => {
   // const date = getLocalTime(new Date('2021-05-08T17:00:00.000000'));
   countdown(date);
   player();
+
+
+  const scriptForm = document.getElementById("script-form");
+  if (scriptForm) {
+
+    const updateScript = () => {
+      const formData = new FormData(scriptForm);
+      const name = formData.get("name") || "(name)";
+      const organization = formData.get("organization");
+      const position = formData.get("position");
+      const session = formData.get("session");
+
+      const text = [`Hi, I am ${name}.`];
+      if (organization && position) {
+        text.push(`I'm a ${position} with ${organization} and`);
+      }
+
+      text.push("I am super excited to join the dance party on October thirtieth " +
+        "to raise money for an amazing organization. Helping Hands Grateful Hearts " +
+        "works with the most vulnerable communities in South and Central America to meet " +
+        "basic needs including housing, food, and clean water.");
+      if (session == "both") {
+        text.push("I will be attending both sessions.");
+      } else if (session == "afternoon") {
+        text.push("I will be attending the afternoon session.");
+      } else {
+        text.push("I will be attending the evening session.");
+      }
+
+      text.push("I would love to see you there. Go to shakeit dot so to sign up.")
+      document.getElementById("english-script").innerHTML = text.join(" ");
+
+      const spanishText = [`Hola, me llamo ${name}.`];
+      if (organization && position) {
+        spanishText.push(`Soy ${position} en ${organization} y`);
+      }
+
+      spanishText.push("Estoy muy emocionado por sumarme a la fiesta de baile el treinta de octubre y recaudar fondos para una organización increíble. Helping Hands Grateful Hearts trabaja con comunidades vulnerables en Sur y Centroamérica, brindando respuesta a necesidades básicas como vivienda, alimentos y agua.");
+      if (session == "both") {
+        spanishText.push("Estaré participando en las dos sesiones.");
+      } else if (session == "afternoon") {
+        spanishText.push("Estaré participando en la sesión de la tarde.");
+      } else {
+        spanishText.push("Estaré participando en la sesión de la noche.");
+      }
+
+      spanishText.push("Me encantaría verte ahí. Regístrate en shakeit punto so.")
+      document.getElementById("spanish-script").innerHTML = spanishText.join(" ");
+    };
+
+    updateScript();
+    scriptForm.addEventListener("keyup", updateScript);
+    scriptForm.addEventListener("click", updateScript);
+  }
 });
