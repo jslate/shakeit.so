@@ -85,6 +85,10 @@ class ShakeItSo < Sinatra::Base
     haml :international
   end
 
+  get '/hhgh_videos' do
+    haml :hhgh_videos
+  end
+
   get '/playlists' do
     load_data
     data = @now_playing.nil? ? fake_data : format_data
