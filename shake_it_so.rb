@@ -27,7 +27,7 @@ class ShakeItSo < Sinatra::Base
 
   def notes
     client = GoogleClient.new('A1', 'C100')
-    client.data['values'].map { |values| Note.new(values) }.select do |note|
+    client.data['values']&.map { |values| Note.new(values) }&.select do |note|
       note.enabled? && note.show_for_song?(@now_playing)
     end
   end
@@ -40,7 +40,7 @@ class ShakeItSo < Sinatra::Base
       duration: @now_playing.duration, progress: @now_playing.progress,
       image: @now_playing.image, time_remaining: format_time(@now_playing.time_remaining),
       progress_percentage: @now_playing.progress_percentage,
-      notes: notes.map(&:text)
+      notes: notes&.map(&:text)
     }
   end
 
