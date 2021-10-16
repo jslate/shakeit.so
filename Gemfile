@@ -15,3 +15,4 @@ gem 'sendgrid-ruby'
 gem 'sequel'
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem "rqrcode", "~> 2.0"

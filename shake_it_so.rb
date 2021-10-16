@@ -9,6 +9,7 @@ require 'sinatra/json'
 require 'pry'
 require 'sequel'
 require 'haml'
+require 'rqrcode'
 require './google_client'
 require './spotify_client'
 require './note'
@@ -101,6 +102,12 @@ class ShakeItSo < Sinatra::Base
   get '/np' do
     load_data
     json(format_data)
+  end
+
+  get '/qr' do
+    # qr_code = RQRCode::QRCode.new('https://8175-174-83-26-31.ngrok.io/now_playing_grid')
+    qr_code = RQRCode::QRCode.new(env['REQUEST_URI'].sub(/\w*$/, 'now_playing_grid'))
+    haml :now_playing_qr_code, locals: { qr_code: qr_code }
   end
 
   get '/party/:id' do
