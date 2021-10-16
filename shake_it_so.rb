@@ -112,7 +112,6 @@ class ShakeItSo < Sinatra::Base
     haml :now_playing_qr_code, locals: { qr_code: qr_code }
   end
 
-
   get '/now_playing_grid' do
     load_data
     song_grid = SongGrid.first(song_uri: @now_playing.uri)

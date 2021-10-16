@@ -17,4 +17,3 @@ DB = Sequel.connect(ENV.fetch('DATABASE_URL'))
 require './models/party'
 require './models/response'
 require './models/song_grid'
-require './models/song_grid_response'

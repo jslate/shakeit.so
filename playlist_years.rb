@@ -23,9 +23,12 @@ data = playlist.tracks.items.map do |item|
     name: item.track.name,
     year: item.track.album.release_date,
     artists: item.track.artists.map(&:name).join('; '),
-    popularity: item.track.popularity
+    popularity: item.track.popularity,
+    uri: item.track.uri
   }
 end
+
+puts data.map { |d| "#{d[:name]} #{d[:uri]}" }
 
 puts data.map { |d| d[:name] }
 puts data.map { |d| d[:year].split('-').first }

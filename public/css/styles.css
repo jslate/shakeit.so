@@ -4,6 +4,50 @@
   --third-button-bg: #00CFC0;
 }
 
+.cont {
+  flex: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px;
+  font-size: 2em;
+}
+
+.song_grid_song_name {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  color: #300000;
+}
+
+.qr_container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr_container svg {
+  scale: 80%;
+}
+
+
+.dot {
+  height: 20px;
+  width: 20px;
+  background-color: rgb(79, 170, 56);
+  border-radius: 10px;
+}
+
+.cont:last-of-type  {
+  text-align: right;
+}
+
 .page-margin {
   background-color: #464646;
 }

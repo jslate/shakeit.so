@@ -33,7 +33,8 @@ class SpotifyClient
       artist: song_data.item.artists.map(&:name).join(', '),
       duration: song_data.item.duration_ms.to_i,
       progress: song_data.progress_ms.to_i,
-      image: song_data.item.album.images[1].url
+      image: song_data.item.album.images[1].url,
+      uri: song_data.item.uri,
     )
   end
 

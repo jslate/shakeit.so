@@ -81,7 +81,7 @@ const player = () => {
             progress_bar.dataset.duration = data.duration;
             song.innerHTML = data.title;
             image.src = replacementImages[data.image] || data.image;
-            let note = data.notes[iteration / 5 % data.notes.length];
+            let note = data.notes ? data.notes[iteration / 5 % data.notes.length] : null;
 
             if (note && false && note.match(/^\d{4}$/)) {
               const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 5);
@@ -170,5 +170,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
     updateScript();
     scriptForm.addEventListener("keyup", updateScript);
     scriptForm.addEventListener("click", updateScript);
+  }
+
+
+  const songGrid = document.getElementById("song-grid");
+  const songGridForm = songGrid.querySelector("form");
+  if (songGrid && songGridForm) {
+    songGrid.addEventListener("click", (event) => {
+      const xPos = event.clientX / document.body.clientWidth;
+      const yPos = event.clientY / document.body.clientHeight;
+      const xPosField = songGridForm.querySelector("[name=x_pos]")
+      const yPosField = songGridForm.querySelector("[name=y_pos]")
+      xPosField.value = xPos;
+      yPosField.value = yPos;
+      songGridForm.submit();
+    })
   }
 });
