@@ -1,0 +1,36 @@
+%html
+  %head
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="30">
+    %script{ src: "/scripts.js"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/reset.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/styles.css"}
+  %body
+    %div#song-grid{ style: "display:flex;justify-content:space-between;background-color: red; height: 100%; width: 100%;font-size: 1.2em;"}
+      - if submitted
+        - song_grid_responses.each do |response|
+          %div.dot{ style: "position: absolute; left: calc(100vw * #{response.x_axis / 100.0}); top: calc(100vh * #{response.y_axis / 100.0})" }
+      - else
+        %form{ style: "display:none", action: "/now_playing_grid/#{song_grid.song_uri}", method: :post }
+          %input{ type: :text, name: :x_pos }
+          %input{ type: :text, name: :y_pos }
+
+      %div.song_grid_song_name= song.title.length > 30 ? "#{song.title.first(30)}..." : song.title
+      %div.cont#a
+        %div.top
+          = "less #{song_grid.x_axis_label}"
+          %br
+          = "less #{song_grid.y_axis_label}"
+        %div.bottom
+          = "less #{song_grid.x_axis_label}"
+          %br
+          = "more #{song_grid.y_axis_label}"
+      %div.cont#b
+        %div.top
+          = "more #{song_grid.x_axis_label}"
+          %br
+          = "less #{song_grid.y_axis_label}"
+        %div.bottom
+          = "more #{song_grid.x_axis_label}"
+          %br
+          = "more #{song_grid.y_axis_label}"

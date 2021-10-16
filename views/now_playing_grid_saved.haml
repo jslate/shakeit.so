@@ -1,0 +1,27 @@
+%html
+  %head
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/reset.css"}
+    %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/styles.css"}
+  %body
+    %div#song-grid{ style: "display:flex;justify-content:space-between;background-color: red; height: 100%; width: 100%;font-size: 1.2em;"}
+      %div.cont#a
+        %div.top
+          = "less #{song_grid.x_axis_label}"
+          %br
+          = "less #{song_grid.y_axis_label}"
+        %div.bottom
+          = "less #{song_grid.x_axis_label}"
+          %br
+          = "more #{song_grid.y_axis_label}"
+      %div.cont#b
+        %div.top
+          = "more #{song_grid.x_axis_label}"
+          %br
+          = "less #{song_grid.y_axis_label}"
+        %div.bottom
+          = "more #{song_grid.x_axis_label}"
+          %br
+          = "more #{song_grid.y_axis_label}"
+    - song_grid_responses.each do |response|
+      %div.dot{ style: "position: absolute; left: calc(100vw * #{response.x_axis / 100.0}); top: calc(100vh * #{response.y_axis / 100.0})" }

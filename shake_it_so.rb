@@ -17,6 +17,8 @@ require './note'
 DB = Sequel.connect(ENV.fetch('DATABASE_URL'))
 require './models/party'
 require './models/response'
+require './models/song_grid'
+require './models/song_grid_response'
 
 class ShakeItSo < Sinatra::Base
   def format_time(milliseconds)
@@ -108,6 +110,30 @@ class ShakeItSo < Sinatra::Base
     # qr_code = RQRCode::QRCode.new('https://8175-174-83-26-31.ngrok.io/now_playing_grid')
     qr_code = RQRCode::QRCode.new(env['REQUEST_URI'].sub(/\w*$/, 'now_playing_grid'))
     haml :now_playing_qr_code, locals: { qr_code: qr_code }
+  end
+
+
+  get '/now_playing_grid' do
+    load_data
+    song_grid = SongGrid.first(song_uri: @now_playing.uri)
+    haml :now_playing_grid, locals: {
+      song_grid: song_grid,
+      song: @now_playing,
+      song_grid_responses: SongGridResponse.where(song_grid_id: song_grid.id),
+      submitted: session["#{@now_playing.uri}_submitted"] || params[:submitted]
+    }
+  end
+
+  post '/now_playing_grid/:song_uri' do
+    song_grid = SongGrid.first(song_uri: params[:song_uri])
+    SongGridResponse.create(
+      song_grid_id: song_grid.id,
+      x_axis: (params[:x_pos].to_f * 100).to_i,
+      y_axis: (params[:y_pos].to_f * 100).to_i,
+      song_uri: params[:song_uri]
+    )
+    session["#{params[:song_uri]}_submitted"] = true
+    redirect '/now_playing_grid'
   end
 
   get '/party/:id' do

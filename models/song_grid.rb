@@ -2,5 +2,5 @@
 
 require 'sequel'
 
-class Party < Sequel::Model(:parties)
+class SongGrid < Sequel::Model(:song_grids)
 end
