@@ -39,12 +39,20 @@ class ShakeItSo < Sinatra::Base
     return unless @now_playing.present?
 
     {
-      title: @now_playing.title, artist: @now_playing.artist,
+      title: ellipsify(@now_playing.title, 40), artist: ellipsify(@now_playing.artist, 40),
       duration: @now_playing.duration, progress: @now_playing.progress,
       image: @now_playing.image, time_remaining: format_time(@now_playing.time_remaining),
       progress_percentage: @now_playing.progress_percentage,
       notes: notes&.map(&:text)
     }
+  end
+
+  def ellipsify(string, length)
+    if string.length <= length
+      string
+    else
+      "#{string.slice(0, length)}…"
+    end
   end
 
   def fake_data

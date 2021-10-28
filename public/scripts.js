@@ -31,7 +31,6 @@ const countdown = (date) => {
     counter.innerHTML = totalMinutes > 0 ? `${totalDays}d ${hours}h ${minutes}m ${seconds}s` : "&nbsp;"
 
     if (totalMinutes < 30 && totalMinutes > 0) {
-      console.log("Show both")
       counter.style = "display: block;";
       if (zoomLink) { zoomLink.style = "display: block;"; }
     } else if (totalMinutes < 0 && zoomLink) {
@@ -63,17 +62,62 @@ const player = () => {
   const image = document.querySelector(".now-playing .image");
   const progress_bar = document.querySelector(".progress-container .progress-bar");
   const time_remaining = document.querySelector(".progress-container .time-remaining");
-  const noteElement = document.querySelector(".now-playing .note");
+  const noteElement = document.querySelector(".now-playing-container .note");
+  const nowPlaying = document.querySelector(".now-playing");
+  const progressConainer = document.querySelector(".progress-container");
 
   let iteration = 0;
+  let showNote = false;
+  let noteIndex = 0;
+  const noteIterations = 20;
+
+
+  const handleNotes = (notes, progress, duration) => {
+
+    const updateNote = () => {
+      if (notes && notes[noteIndex] && showNote) {
+
+        const fullNote = notes[noteIndex];
+        let note = fullNote;
+
+        if (note.match(/.+;.+/)) {
+          const position = Math.floor(parseInt(progress) / parseInt(duration) * 2);
+          note = `<span style="color: lightblue">${note.split(";")[position]}</span>`;
+        }
+
+        noteElement.innerHTML = note;
+        nowPlaying.style.display = "none";
+        progressConainer.style.display = "none";
+        noteElement.style.display = "flex";
+      } else {
+        noteElement.style.display = "none";
+        nowPlaying.style.display = "grid";
+        progressConainer.style.display = "block";
+      }
+    };
+
+    if (!showNote && iteration % noteIterations > (noteIterations / 2)) {
+      showNote = true;
+      noteIndex = noteIndex >= notes.length - 1 ? 0 : noteIndex + 1;
+    } else if (showNote && iteration % noteIterations <= (noteIterations / 2)) {
+      showNote = false;
+    }
+    updateNote()
+  }
+
+  let notes = [];
+  let progress = 0;
+  let duration = 0;
   setInterval(() => {
     iteration += 1;
+    handleNotes(notes, progress, duration)
+
     if (iteration % 5 === 0) {
       fetch(`/np?junk=${Math.random()}`)
         .then(response => response.json())
         .then(data => {
           if (!!data && !!data.title) {
-            artist.innerHTML = data.artist;
+            artist.innerHTML = `Artist: ${data.artist}`;
             song.innerHTML = data.song;
             time_remaining.innerHTML = data.time_remaining;
             progress_bar.style = `width: ${width(data.progress, data.duration)}`;
@@ -81,26 +125,15 @@ const player = () => {
             progress_bar.dataset.duration = data.duration;
             song.innerHTML = data.title;
             image.src = replacementImages[data.image] || data.image;
-            let note = data.notes ? data.notes[iteration / 5 % data.notes.length] : null;
-
-            if (note && false && note.match(/^\d{4}$/)) {
-              const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 5);
-              noteElement.innerHTML = note.slice(0, position) + "????".slice(position);
-            } else if (note && note.match(/.+;.+/)) {
-              const position = Math.floor(parseInt(data.progress) / parseInt(data.duration) * 2);
-              noteElement.innerHTML = `<span style="color: lightblue">${note.split(";")[position]}</span>`
-            } else if (!!note) {
-              noteElement.innerHTML = note;
-            } else {
-              noteElement.innerHTML = "";
-            }
+            notes = data.notes;
           }
         });
       } else {
         const data = progress_bar.dataset;
         if (data.duration && data.progress) {
-          const duration = parseInt(data.duration);
+          duration = parseInt(data.duration);
           const newProgress = parseInt(data.progress) + 1000;
+          progress = newProgress;
           if (newProgress <= duration) {
             progress_bar.style = `width: ${width(newProgress, duration)}`;
             progress_bar.dataset.progress = newProgress;

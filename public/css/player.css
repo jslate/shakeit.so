@@ -6,7 +6,8 @@
 }
 
 .now-playing-container {
-  width: 320px;
+  width: 960px;
+  height: 540px;
   background-color: var(--player-bg);
   color: var(--player-tx);
   padding: 10px;
@@ -26,22 +27,27 @@
 }
 
 .now-playing  .song {
-  font-size: 1.2rem;
+  font-size: 4rem;
   margin: 0;
+  height: 50%;
 }
 
 .now-playing .artist {
-  font-size: 1rem;
+  font-size: 3rem;
+  height: 50%;
 }
 
 .now-playing .image {
   width: 100%;
 }
 
-.now-playing .note {
-  text-align: right;
-  margin-right: 15px;
-  font-size: 1rem;
+.note {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
 }
 
 .now-playing .song-info {
@@ -58,7 +64,7 @@
 }
 
 .progress-container .progress-bar {
-  height: 30px;
+  height: 100%;
   text-align: right;
   background-color: var(--progress-bg);
 }
