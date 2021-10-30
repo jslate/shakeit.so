@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'yaml'
 require './song'
 
 class SpotifyClient
@@ -27,15 +28,19 @@ class SpotifyClient
 
     return if response.body.nil?
 
-    song_data = JSON.parse(response.body, object_class: OpenStruct)
-    Song.new(
-      title: song_data.item.name,
-      artist: song_data.item.artists.map(&:name).join(', '),
-      duration: song_data.item.duration_ms.to_i,
-      progress: song_data.progress_ms.to_i,
-      image: song_data.item.album.images[1].url,
-      uri: song_data.item.uri,
-    )
+    song_hash = JSON.parse(response.body)
+    song_data = {
+      title: song_hash['item']['name'],
+      artist: song_hash['item']['artists']&.map { |a| a['name'] }.join(', '),
+      duration: song_hash['item']['duration_ms'].to_i,
+      progress: song_hash['progress_ms'].to_i,
+      image: song_hash['item']['album']['images'].first&.fetch('url', nil),
+      uri: song_hash['item']['uri'],
+    }
+
+    local_song_data = YAML.load(File.read('./local_song_data.yml'))[song_data[:uri]] || {}
+
+    Song.new(song_data.merge(local_song_data))
   end
 
   def latest_playlist_ids
