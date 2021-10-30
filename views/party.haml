@@ -22,7 +22,11 @@
           %h1.mg-tp-sm-1.mg-bt-sm-2= party.name
 
           - if thank_you
-            .mg-tp-sm-1.mg-bt-sm-2 Thank you! Your response has been recorded and will be reviewed by a moderator before appearing below.
+            .mg-tp-sm-1.mg-bt-sm-2{ style: "font-size: 2em; color: red" }
+              Thank you! Your response has been recorded and will be reviewed by a moderator before appearing below.
+              Please join us on Zoom!
+              %a{ href: 'https://us06web.zoom.us/j/83777851268' }
+                https://us06web.zoom.us/j/83777851268
 
           %form{ method: :post }
             .form-fields
