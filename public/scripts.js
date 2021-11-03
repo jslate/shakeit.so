@@ -85,6 +85,10 @@ const player = () => {
           note = `<span style="color: lightblue">${note.split(";")[position]}</span>`;
         }
 
+        if (note.match(/^https?:\/\/.*\.gif$/)) {
+          note = `<img src="${note}" style="max-height: 100%; max-width: 100%">`
+        }
+
         noteElement.innerHTML = note;
         nowPlaying.style.display = "none";
         progressConainer.style.display = "none";
