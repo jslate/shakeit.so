@@ -48,6 +48,15 @@
   justify-content: center;
   align-items: center;
   font-size: 5rem;
+  text-align: center;
+}
+
+.note img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  max-width: 960px;
+  max-height: 540px;
 }
 
 .now-playing .song-info {

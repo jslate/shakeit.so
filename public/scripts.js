@@ -86,7 +86,7 @@ const player = () => {
         }
 
         if (note.match(/^https?:\/\/.*\.gif$/)) {
-          note = `<img src="${note}" style="max-height: 100%; max-width: 100%">`
+          note = `<img src="${note}">`
         }
 
         noteElement.innerHTML = note;
