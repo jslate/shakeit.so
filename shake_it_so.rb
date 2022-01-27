@@ -194,4 +194,15 @@ class ShakeItSo < Sinatra::Base
     session[:logged_in] = nil
     redirect '/'
   end
+
+  get '/robin' do
+    <<-HTML
+      <p>Here ya go:<p>
+      <a href="https://us06web.zoom.us/j/96598219853?pwd=eVo3MDRDdElvVFZCN2dSSkl0ZXE3QT09">
+        https://us06web.zoom.us/j/96598219853?pwd=eVo3MDRDdElvVFZCN2dSSkl0ZXE3QT09
+      </a>
+
+      <p>Passcode: dw/j-4fun</p>
+    HTML
+  end
 end
