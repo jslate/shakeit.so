@@ -85,7 +85,7 @@ const player = () => {
           note = `<span style="color: lightblue">${note.split(";")[position]}</span>`;
         }
 
-        if (note.match(/^https?:\/\/.*\.gif$/)) {
+        if (note.match(/^https?:\/\/.*/)) {
           note = `<img src="${note}">`
         }
 
@@ -104,7 +104,7 @@ const player = () => {
       showNote = true;
       noteIndex = noteIndex >= notes.length - 1 ? 0 : noteIndex + 1;
     } else if (showNote && iteration % noteIterations <= (noteIterations / 2)) {
-      showNote = false;
+      showNote =  false;
     }
     updateNote()
   }
