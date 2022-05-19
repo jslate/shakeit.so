@@ -1,7 +1,7 @@
 %html
   %head
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    %script{ src: "/scripts.js"}
+    -# %script{ src: "/scripts.js"}
     %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/reset.css"}
     %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/styles.css"}
     %link{:rel => :stylesheet, :type => :"text/css", :href => "/css/generated-styles.css"}
@@ -9,34 +9,24 @@
     %meta{ property: "og:type", content: "website" }
     %meta{ property: "og:title", content: "Shake It So!" }
     %meta{ property: "og:description", content: "Shake It So is all about dancing, on Zoom and in person, for fun and for good!" }
-    %meta{ property: "og:image", content: "https://www.shakeit.so/images/shake-it-so-logo-meta.png" }
+    %meta{ property: "og:image", content: "https://www.shakeit.so/images/shake-it-so-disco-ball-logo.png" }
   %body
     %div.grid
 
       %div.page-margin
       %div.container
-        %div.mg-tp-sm-1
-          %img#dancers-header{ src: "/images/dancer-header.svg"  }
-          %h1.mg-tp-sm-2.mg-bt-sm-2.pd-hz-sm-1.text-align-center
+        %div.mg-tp-sm-1.text-align-center
+          %img{ src: "/images/shake-it-so-disco-ball-logo.png"}
+
+        %div.pd-hz-sm-1.pd-vt-sm-2.text-align-center
+          Shake It So is all about dancing, on Zoom and in person, for fun and for good!
+        %div.pd-hz-sm-1.pd-vt-sm-2.text-align-center
+          Join us Friday, March 20 2022 at 8AM EST when we will be joined by Malawing singing and dancing group Mphepo Chimtali for a live performance! Link to join will be provided on Friday morning.
+          If you'd like to support the wonderful work that Bridges To Malawi is doing every single day, please go to the <a href="http://www.bridgestomalawi.org">Bridges To Malawi</a> website.
 
 
-
-          %img#dancers{ src: "/images/dancers-on-grass.svg"  }
-          %div.dancers-below-text.pd-bt-sm-2
-            Shake It So is all about dancing, on Zoom and in person, for fun and for good!
-            In October, we were very proud to work with with <a href="https://helpinghandsgratefulhearts.org">
-            Helping Hands Grateful Hearts</a>. Their
-            mission is to work with the most vulnerable communities around the world by meeting basic needs
-            and giving hope and power to rise out of poverty.
-
-          .pd-hz-sm-1.mg-vt-sm-3
-            We help organizations like HHGH by raising funds, building community, educating people about their mission, and celebrating their
-            successes while dancing our hearts out! In Ocrobwe, we raised <strong>$1,548</strong> to help this amazing organization. While the party may be over, donations are still very much appreciated.
-
-          .pd-hz-sm-1.mg-tp-sm-2.mg-bt-sm-1
-            %a.button{ href: "https://helpinghandsgratefulhearts.org/shake-it-so-helping-hands-grateful-hearts-team-up/" }
-              Donate to Helping Hands Greatful Hearts
-
+        %div.pd-vt-sm-2.pd-hz-sm-1.text-align-center
+          %hr
 
         .pd-hz-sm-1.mg-tp-sm-3
           Learn more <a href="/about">about us</a> and about our <a href="/international">international dance parties</a>.
@@ -44,6 +34,29 @@
         .pd-hz-sm-1.mg-tp-sm-4.mg-bt-sm-6
           %small
             You can find information about weekday Zoom dance parties on
-            %a{ href: "https://www.facebook.com/groups/383125680200810" }
-              Facebook.
+          %a{ href: "https://www.facebook.com/groups/383125680200810" }
+            Facebook.
+
       %div.page-margin
+
+    -#       %img#dancers-header{ src: "/images/dancer-header.svg"  }
+    -#       %h1.mg-tp-sm-2.mg-bt-sm-2.pd-hz-sm-1.text-align-center
+
+        foo
+
+
+    -#       %img#dancers{ src: "/images/dancers-on-grass.svg"  }
+    -#       %div.dancers-below-text.pd-bt-sm-2
+    -#         Shake It So is all about dancing, on Zoom and in person, for fun and for good!
+    -#         In October, we were very proud to work with with <a href="https://helpinghandsgratefulhearts.org">
+    -#         Helping Hands Grateful Hearts</a>. Their
+    -#         mission is to work with the most vulnerable communities around the world by meeting basic needs
+    -#         and giving hope and power to rise out of poverty.
+
+    -#       .pd-hz-sm-1.mg-vt-sm-3
+    -#         We help organizations like HHGH by raising funds, building community, educating people about their mission, and celebrating their
+    -#         successes while dancing our hearts out! In Ocrobwe, we raised <strong>$1,548</strong> to help this amazing organization. While the party may be over, donations are still very much appreciated.
+
+    -#       .pd-hz-sm-1.mg-tp-sm-2.mg-bt-sm-1
+    -#         %a.button{ href: "https://helpinghandsgratefulhearts.org/shake-it-so-helping-hands-grateful-hearts-team-up/" }
+    -#           Donate to Helping Hands Greatful Hearts
