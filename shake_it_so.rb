@@ -197,12 +197,31 @@ class ShakeItSo < Sinatra::Base
 
   get '/robin' do
     <<-HTML
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <style>body { font-size: 1.5em; }</style>
       <p>Here ya go:<p>
-      <a href="https://us06web.zoom.us/j/96598219853?pwd=eVo3MDRDdElvVFZCN2dSSkl0ZXE3QT09">
+      <a style="word-break: break-all;" href="https://us06web.zoom.us/j/96598219853?pwd=eVo3MDRDdElvVFZCN2dSSkl0ZXE3QT09">
         https://us06web.zoom.us/j/96598219853?pwd=eVo3MDRDdElvVFZCN2dSSkl0ZXE3QT09
       </a>
 
       <p>Passcode: dw/j-4fun</p>
+      <p>Meeting ID: 965 9821 9853</p>
+    HTML
+  end
+
+  get '/mzanga' do
+    <<-HTML
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <style>body { font-size: 1.5em; }</style>
+      <p>Here ya go, mzanga!<p>
+      <a style="word-break: break-all;" href="https://us06web.zoom.us/j/96598219853?pwd=eVo3MDRDdElvVFZCN2dSSkl0ZXE3QT09">
+        https://us06web.zoom.us/j/96598219853?pwd=eVo3MDRDdElvVFZCN2dSSkl0ZXE3QT09
+      </a>
+
+      <p>Passcode: dw/j-4fun<br/>
+      Meeting ID: 965 9821 9853</p>
+
+      <p>Good for all regular morning dance parties, just not a few special events (like w/ Mphepo Chimtali)</p>
     HTML
   end
 end
