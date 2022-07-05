@@ -80,6 +80,10 @@ class ShakeItSo < Sinatra::Base
     haml :index
   end
 
+  get '/chamwabvi' do
+    haml :chamwabvi
+  end
+
   get '/hhgh' do
     haml :index
   end
